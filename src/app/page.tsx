@@ -14,6 +14,7 @@ import {
   UserCheck,
   CheckCircle2,
   Trophy,
+  User,
 } from "lucide-react";
 
 const careers = [
@@ -503,7 +504,7 @@ function SubProjectCard({ subProject }: { subProject: SubProject }) {
         </Badge>
       </div>
       
-      <div className="space-y-3 text-sm text-muted-foreground leading-relaxed">
+      <div className="space-y-3 text-sm text-primary/90 leading-relaxed">
         {subProject.problem && (
           <div className="mb-3">
             <span className="text-xs font-semibold text-foreground uppercase tracking-wide mb-1.5 block">
@@ -665,7 +666,7 @@ export default function Home() {
             JeongSu Kim
           </h2>
 
-          <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
+          <div className="flex flex-wrap gap-4 text-sm text-primary/90">
             <a
               href="tel:010-8743-9512"
               className="group flex items-center gap-2 rounded-lg px-3 py-2 transition-all hover:bg-muted hover:text-foreground"
@@ -688,9 +689,9 @@ export default function Home() {
         {/* Introduction */}
         <section className="mb-16">
           <h3 className="mb-6 flex items-center gap-3 text-xl font-semibold sm:text-2xl">
-            <span className="text-2xl">🎤</span> 자기소개
+            <User className="h-5 w-5 text-primary" /> 자기소개
           </h3>
-          <div className="space-y-4 text-muted-foreground leading-relaxed sm:text-base">
+          <div className="space-y-4 text-primary/90 leading-relaxed sm:text-base">
             <p className="pl-1">
               신규 프로젝트의 초기 기획과 설계 단계부터 참여해 프론트엔드 구조
               설계와 구축을 주도해왔습니다.
