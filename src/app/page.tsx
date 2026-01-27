@@ -645,6 +645,10 @@ function ProjectCard({ project }: { project: ProjectItem }) {
   );
 }
 
+// 정적 페이지로 설정
+export const dynamic = 'force-static';
+export const revalidate = false;
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-background">
