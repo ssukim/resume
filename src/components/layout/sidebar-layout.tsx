@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import {
   Briefcase,
-  BookOpen,
+  PenLine,
   Phone,
   Mail,
   Menu,
@@ -17,7 +17,7 @@ import {
 function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
   const pathname = usePathname();
   const isResume = pathname === "/";
-  const isCaseStudy = pathname.startsWith("/case-study");
+  const isBlog = pathname.startsWith("/blog");
 
   return (
     <div className="flex h-full flex-col px-5 py-6">
@@ -55,16 +55,16 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
           이력서
         </Link>
         <Link
-          href="/case-study"
+          href="/blog"
           onClick={onNavigate}
           className={`flex w-full items-center gap-2 rounded-lg px-3 py-2.5 text-sm transition-colors ${
-            isCaseStudy
+            isBlog
               ? "bg-sidebar-accent text-sidebar-accent-foreground font-medium"
               : "text-muted-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
           }`}
         >
-          <BookOpen className="h-4 w-4" />
-          케이스 스터디
+          <PenLine className="h-4 w-4" />
+          블로그
         </Link>
       </nav>
 
