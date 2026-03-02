@@ -27,7 +27,7 @@ projects/{project-name}/
 
 | 상태 | 프로젝트 | 설명 | 단계 |
 |------|----------|------|------|
-| - | - | - | - |
+| 🟡 | [case-study-mdx](./case-study-mdx/spec.md) | 케이스 스터디 MDX 블로그화 | Plan |
 
 ## 네이밍 규칙
 

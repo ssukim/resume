@@ -1,12 +1,7 @@
-"use client";
-
-import { useState, useRef, useCallback } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import {
-  Mail,
-  Phone,
   Briefcase,
   GraduationCap,
   FolderOpen,
@@ -14,14 +9,6 @@ import {
   Award,
   ExternalLink,
   User,
-  ChevronDown,
-  Lightbulb,
-  Target,
-  Wrench,
-  TrendingUp,
-  BookOpen,
-  Menu,
-  X,
 } from "lucide-react";
 
 // ─── Data ────────────────────────────────────────────────────
@@ -465,72 +452,6 @@ const skills = [
   { category: "Tools", items: ["Git", "pnpm", "Storybook", "Lerna"] },
 ];
 
-interface CaseStudy {
-  title: string;
-  subtitle: string;
-  tags: string[];
-  sections: {
-    background: string;
-    approach: string;
-    implementation: string;
-    result: string;
-    learnings: string;
-  };
-}
-
-const caseStudies: CaseStudy[] = [
-  {
-    title: "마케터의 2시간을 5분으로",
-    subtitle: "댓글 키워드 기반 DM 자동 응대 설계 과정",
-    tags: ["Product Design", "UX", "Automation"],
-    sections: {
-      background:
-        "유저 인터뷰에서 인스타그램 마케터들이 댓글 응대에 하루 평균 2시간 이상을 소모한다는 사실을 발견했습니다. 특히 \"가격 알려주세요\", \"구매 링크 보내주세요\" 같은 반복 댓글에 일일이 DM을 보내는 작업이 가장 큰 병목이었습니다. 기존 자동화 도구들은 모든 댓글에 동일한 메시지를 보내거나, 설정이 복잡해 마케터가 실제로 사용하기 어려웠습니다.",
-      approach:
-        "핵심 인사이트는 \"마케터는 모든 댓글에 응대하고 싶은 게 아니라, 특정 키워드가 포함된 댓글에만 맞춤 DM을 보내고 싶다\"는 것이었습니다. 이를 3-Step으로 단순화했습니다: (1) 키워드 설정 — 어떤 댓글에 반응할지, (2) DM 메시지 작성 — 무엇을 보낼지, (3) 활성화 — 언제부터 동작할지. 복잡한 조건 분기나 플로우차트 없이, 마케터가 5분 안에 설정을 완료할 수 있는 구조를 목표로 설계했습니다.",
-      implementation:
-        "Zustand 기반 멀티스텝 폼으로 3단계 설정 플로우를 구현했습니다. 각 단계에서 입력값 유효성을 실시간 검증하고, 이전 단계로 돌아가도 데이터가 유지되도록 설계했습니다. 자동 응대가 LIVE 상태일 때 다른 사용자가 동시에 수정하면 충돌이 발생할 수 있어, Optimistic Update와 LIVE 충돌 감지 UX를 구현했습니다. 서버 상태와 클라이언트 상태가 불일치하면 사용자에게 즉시 알림을 표시하고 최신 상태로 동기화하는 방식입니다.",
-      result:
-        "마케터의 댓글 응대 시간이 하루 2시간에서 초기 설정 5분으로 단축되었습니다. 설정 완료 후에는 수동 개입 없이 자동으로 동작합니다. 3-Step 설정 플로우의 완료율은 높은 수준을 유지하고 있으며, \"설정이 너무 간단해서 처음에 다 된 건지 의심했다\"는 사용자 피드백을 받았습니다.",
-      learnings:
-        "자동화의 핵심은 기술적 구현이 아니라 사용자의 멘탈 모델에 맞는 설계라는 것을 체감했습니다. 처음에는 조건 분기, A/B 테스트 메시지, 시간대별 발송 등 다양한 기능을 고려했지만, MVP에서는 \"키워드 → DM\" 이라는 가장 단순한 플로우만 남겼습니다. 복잡한 기능은 사용자가 요청할 때 추가하면 되지만, 첫 경험이 복잡하면 사용자는 떠납니다.",
-    },
-  },
-  {
-    title: "Claude Code로 제품 만들기",
-    subtitle: "AI 개발 워크플로 구축기",
-    tags: ["AI", "Developer Experience", "Productivity"],
-    sections: {
-      background:
-        "2인 스타트업에서 프론트엔드 개발자 1명이 기획, 설계, 구현, QA까지 담당해야 하는 상황이었습니다. 전통적인 개발 프로세스로는 피처 하나를 출시하는 데 2-3주가 걸렸고, QA는 수동으로 진행하다 보니 놓치는 케이스가 많았습니다. 개발 속도와 품질, 두 마리 토끼를 잡아야 했습니다.",
-      approach:
-        "Claude Code를 단순한 코드 생성 도구가 아닌 \"개발 파트너\"로 포지셔닝했습니다. CLAUDE.md에 프로젝트 컨텍스트(폴더 구조, 네이밍 규칙, 컴포넌트 패턴)를 정의하고, 기획서를 마크다운으로 작성해 Claude가 전체 맥락을 이해한 상태에서 작업하도록 했습니다. Playwright MCP를 연동해 QA 체크리스트를 자동 실행하는 워크플로도 구축했습니다.",
-      implementation:
-        "개발 워크플로를 3단계로 구조화했습니다: (1) 기획 단계 — 마크다운 스펙 문서를 작성하면 Claude가 분석해 구현 계획을 제안, (2) 구현 단계 — Claude Code가 코드를 생성하고 개발자가 리뷰·수정, (3) QA 단계 — Playwright MCP로 체크리스트 기반 자동 테스트 실행. conma-hub 저장소에 모든 기획서, 리뷰, 체인지로그를 체계적으로 관리해 Claude가 이전 맥락을 참조할 수 있도록 했습니다.",
-      result:
-        "MVP 이후 DM 자동 응대, 댓글 벌크 액션, 블로그 플랫폼 등 3개 핵심 피처를 연속 출시했습니다. Playwright MCP 기반 QA 자동화로 수동 테스트 시간을 크게 줄이면서도 테스트 커버리지를 높였습니다. 누적 가입 유저 250명을 확보하며 제품의 시장 검증을 진행 중입니다.",
-      learnings:
-        "AI 도구의 효과는 도구 자체보다 \"어떤 컨텍스트를 제공하느냐\"에 달려 있다는 것을 배웠습니다. CLAUDE.md 없이 사용하면 일반적인 코드를 생성하지만, 프로젝트의 규칙과 패턴을 정의하면 팀원처럼 일관된 코드를 작성합니다. 또한 AI가 잘하는 영역(반복 코드 생성, 패턴 적용)과 사람이 해야 하는 영역(제품 판단, UX 의사결정)을 명확히 구분하는 것이 중요했습니다.",
-    },
-  },
-  {
-    title: "AI 검색엔진에 노출되기까지",
-    subtitle: "SEO & AI 검색 최적화 여정",
-    tags: ["SEO", "Growth", "AI"],
-    sections: {
-      background:
-        "ChatGPT, Perplexity 같은 AI 검색엔진이 점점 더 많은 트래픽을 가져가는 상황에서, 전통적인 Google SEO만으로는 제품 노출에 한계가 있었습니다. AI 검색엔진은 웹페이지를 크롤링해 답변을 생성하는데, 대부분의 웹사이트가 AI 봇의 접근을 차단하고 있어 AI 검색 결과에 노출되기 어려운 구조였습니다.",
-      approach:
-        "두 가지 방향을 동시에 추진했습니다: (1) 기술적 최적화 — AI 봇(GPTBot, ClaudeBot, PerplexityBot)이 콘텐츠를 읽을 수 있도록 robots.txt와 메타 태그를 설정하고, SSR/ISR 기반으로 크롤러가 완전한 HTML을 받을 수 있도록 렌더링 전략을 전환, (2) 콘텐츠 최적화 — AI가 이해하기 쉬운 시맨틱 HTML 구조로 개선하고, 블로그 플랫폼을 통해 제품 관련 양질의 콘텐츠를 지속적으로 생산.",
-      implementation:
-        "Next.js의 렌더링 전략을 CSR에서 ISR(Incremental Static Regeneration)로 전환해 크롤러가 JavaScript 실행 없이도 콘텐츠를 읽을 수 있도록 했습니다. robots.txt에 GPTBot, ClaudeBot, PerplexityBot을 명시적으로 Allow 처리했습니다. 시맨틱 HTML로 페이지 구조를 개선하고, Open Graph 메타 태그와 구조화된 데이터(JSON-LD)를 추가했습니다. 블로그 플랫폼에는 TipTap 에디터를 도입해 팀원 누구나 콘텐츠를 작성할 수 있게 했습니다.",
-      result:
-        "ChatGPT와 Perplexity에서 인스타그램 마케팅 자동화 관련 질문에 Conma가 노출되기 시작했습니다. AI 검색엔진을 통한 유기적 유입이 발생하며, 별도의 광고비 없이 제품 인지도가 상승했습니다. 블로그 콘텐츠가 AI 검색 결과의 참조 소스로 활용되면서 브랜드 신뢰도 향상에도 기여했습니다.",
-      learnings:
-        "AI 검색 최적화는 기존 SEO의 연장선이 아닌, 별도의 전략이 필요하다는 것을 배웠습니다. Google은 키워드 매칭과 백링크를 중시하지만, AI 검색엔진은 콘텐츠의 명확성과 구조화를 더 중시합니다. 또한 AI 봇을 차단하는 것이 일반적인 업계 관행이지만, 스타트업 입장에서는 오히려 AI 봇을 적극 허용해 노출 기회를 만드는 것이 유리했습니다.",
-    },
-  },
-];
 
 // ─── Types ────────────────────────────────────────────────────
 
@@ -551,8 +472,6 @@ interface ProjectItem {
   tech: string[];
   subProjects: SubProject[];
 }
-
-type Tab = "resume" | "case-study";
 
 // ─── Resume Components ───────────────────────────────────────
 
@@ -864,269 +783,17 @@ function ResumeContent() {
   );
 }
 
-// ─── Case Study Components ───────────────────────────────────
-
-const sectionMeta: {
-  key: keyof CaseStudy["sections"];
-  label: string;
-  icon: React.ReactNode;
-}[] = [
-  { key: "background", label: "배경", icon: <Lightbulb className="h-4 w-4" /> },
-  { key: "approach", label: "접근법", icon: <Target className="h-4 w-4" /> },
-  { key: "implementation", label: "핵심 구현", icon: <Wrench className="h-4 w-4" /> },
-  { key: "result", label: "결과", icon: <TrendingUp className="h-4 w-4" /> },
-  { key: "learnings", label: "배운 점", icon: <BookOpen className="h-4 w-4" /> },
-];
-
-function CaseStudyCard({ study }: { study: CaseStudy }) {
-  const [isOpen, setIsOpen] = useState(false);
-
-  return (
-    <Card className="group transition-all hover:shadow-lg hover:shadow-primary/5">
-      <CardHeader
-        className="cursor-pointer select-none"
-        onClick={() => setIsOpen((prev) => !prev)}
-      >
-        <div className="flex items-start justify-between gap-4">
-          <div className="flex-1">
-            <CardTitle className="text-base sm:text-lg">{study.title}</CardTitle>
-            <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">
-              {study.subtitle}
-            </p>
-            <div className="mt-3 flex flex-wrap gap-1.5">
-              {study.tags.map((tag) => (
-                <Badge key={tag} variant="secondary" className="text-xs font-medium">
-                  {tag}
-                </Badge>
-              ))}
-            </div>
-          </div>
-          <ChevronDown
-            className={`h-5 w-5 shrink-0 text-muted-foreground transition-transform duration-200 ${
-              isOpen ? "rotate-180" : ""
-            }`}
-          />
-        </div>
-      </CardHeader>
-
-      <div
-        className={`grid transition-[grid-template-rows] duration-300 ease-out ${
-          isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-        }`}
-      >
-        <div className="overflow-hidden">
-          <CardContent className="pt-0">
-            <Separator className="mb-6" />
-            <div className="space-y-6">
-              {sectionMeta.map(({ key, label, icon }) => (
-                <div key={key}>
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="text-primary">{icon}</span>
-                    <span className="text-xs font-semibold text-foreground uppercase tracking-wide">
-                      {label}
-                    </span>
-                  </div>
-                  <p className="pl-6 text-sm text-foreground/80 leading-relaxed">
-                    {study.sections[key]}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </div>
-      </div>
-    </Card>
-  );
-}
-
-function CaseStudyContent() {
-  return (
-    <section>
-      <p className="mb-8 text-sm text-muted-foreground leading-relaxed">
-        이력서에서 &quot;무엇을 했는가&quot;를 보여준다면, 여기서는 &quot;왜, 어떻게 했는가&quot;를 보여줍니다.
-        <br />
-        각 케이스를 클릭하면 상세 내용을 확인할 수 있습니다.
-      </p>
-      <div className="space-y-4">
-        {caseStudies.map((study) => (
-          <CaseStudyCard key={study.title} study={study} />
-        ))}
-      </div>
-    </section>
-  );
-}
-
-// ─── Sidebar ─────────────────────────────────────────────────
-
-function Sidebar({
-  activeTab,
-  onTabChange,
-}: {
-  activeTab: Tab;
-  onTabChange: (tab: Tab) => void;
-}) {
-  return (
-    <div className="flex h-full flex-col px-5 py-6">
-      {/* Profile */}
-      <div>
-        <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
-            JS
-          </div>
-          <h1 className="text-lg font-bold text-foreground">
-            JeongSu Kim
-          </h1>
-        </div>
-        <p className="mt-3 text-sm text-muted-foreground">Product Engineer</p>
-        <p className="mt-1 text-xs text-muted-foreground/70">AI와 함께 제품을 만드는</p>
-        <p className="mt-2 text-xs text-muted-foreground/50">
-          Last Updated. 2026/03/02
-        </p>
-      </div>
-
-      <Separator className="my-5" />
-
-      {/* Navigation */}
-      <nav className="space-y-1">
-        <button
-          onClick={() => onTabChange("resume")}
-          className={`flex w-full items-center gap-2 rounded-lg px-3 py-2.5 text-sm transition-colors ${
-            activeTab === "resume"
-              ? "bg-sidebar-accent text-sidebar-accent-foreground font-medium"
-              : "text-muted-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
-          }`}
-        >
-          <Briefcase className="h-4 w-4" />
-          이력서
-        </button>
-        <button
-          onClick={() => onTabChange("case-study")}
-          className={`flex w-full items-center gap-2 rounded-lg px-3 py-2.5 text-sm transition-colors ${
-            activeTab === "case-study"
-              ? "bg-sidebar-accent text-sidebar-accent-foreground font-medium"
-              : "text-muted-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
-          }`}
-        >
-          <BookOpen className="h-4 w-4" />
-          케이스 스터디
-        </button>
-      </nav>
-
-      <Separator className="my-5" />
-
-      {/* Core Skills */}
-      <div>
-        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
-          Core Skills
-        </p>
-        <div className="mt-3 flex flex-wrap gap-2">
-          <Badge variant="secondary">TypeScript</Badge>
-          <Badge variant="secondary">Next.js</Badge>
-          <Badge variant="secondary">React</Badge>
-          <Badge variant="secondary">Claude Code</Badge>
-        </div>
-      </div>
-
-      {/* Spacer */}
-      <div className="flex-1" />
-
-      <Separator className="mb-4" />
-
-      {/* Contact */}
-      <div className="pb-2 space-y-1">
-        <a
-          href="tel:010-8743-9512"
-          className="flex items-center gap-2 rounded-lg px-2 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-sidebar-accent hover:text-foreground"
-        >
-          <Phone className="h-4 w-4" />
-          010-8743-9512
-        </a>
-        <a
-          href="mailto:ssukim0930@gmail.com"
-          className="flex items-center gap-2 rounded-lg px-2 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-sidebar-accent hover:text-foreground"
-        >
-          <Mail className="h-4 w-4" />
-          ssukim0930@gmail.com
-        </a>
-      </div>
-    </div>
-  );
-}
-
 // ─── Main Page ───────────────────────────────────────────────
 
 export default function Home() {
-  const [activeTab, setActiveTab] = useState<Tab>("resume");
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const mainRef = useRef<HTMLElement>(null);
-
-  const handleTabChange = useCallback((tab: Tab) => {
-    setActiveTab(tab);
-    setSidebarOpen(false);
-    // Scroll main content to top
-    if (mainRef.current) {
-      mainRef.current.scrollTop = 0;
-    }
-  }, []);
-
   return (
-    <div className="min-h-screen bg-background">
-      {/* Mobile Top Bar */}
-      <div className="sticky top-0 z-50 flex h-14 items-center gap-3 border-b border-border bg-sidebar px-4 lg:hidden">
-        <button
-          onClick={() => setSidebarOpen((prev) => !prev)}
-          className="rounded-md p-2 hover:bg-sidebar-accent"
-        >
-          {sidebarOpen ? (
-            <X className="h-5 w-5" />
-          ) : (
-            <Menu className="h-5 w-5" />
-          )}
-        </button>
-        <span className="text-lg font-semibold text-foreground">
-          JeongSu Kim
-        </span>
-      </div>
+    <div className="mx-auto max-w-4xl px-4 py-8 lg:px-8 lg:py-12">
+      <ResumeContent />
 
-      {/* Mobile Overlay */}
-      <div
-        className={`fixed inset-0 z-40 bg-black/50 transition-opacity duration-300 lg:hidden ${
-          sidebarOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
-        }`}
-        onClick={() => setSidebarOpen(false)}
-      />
-
-      {/* Sidebar */}
-      <aside
-        className={`fixed top-0 left-0 z-40 h-screen w-72 border-r border-sidebar-border bg-sidebar transition-transform duration-300 ease-in-out lg:translate-x-0 ${
-          sidebarOpen ? "translate-x-0" : "-translate-x-full"
-        } lg:z-auto`}
-      >
-        {/* On mobile, offset for top bar */}
-        <div className="h-full pt-14 lg:pt-0">
-          <Sidebar activeTab={activeTab} onTabChange={handleTabChange} />
-        </div>
-      </aside>
-
-      {/* Main Content */}
-      <main
-        ref={mainRef}
-        className="lg:ml-72 lg:h-screen lg:overflow-y-auto"
-      >
-        <div className="mx-auto max-w-4xl px-4 py-8 lg:px-8 lg:py-12">
-          {/* Tab Content */}
-          <div key={activeTab} className="animate-fade-in">
-            {activeTab === "resume" ? <ResumeContent /> : <CaseStudyContent />}
-          </div>
-
-          {/* Footer */}
-          <footer className="mt-20 pt-8 text-center text-sm text-muted-foreground border-t border-border">
-            <p>&copy; 2026 JeongSu Kim. All rights reserved.</p>
-          </footer>
-        </div>
-      </main>
+      {/* Footer */}
+      <footer className="mt-20 pt-8 text-center text-sm text-muted-foreground border-t border-border">
+        <p>&copy; 2026 JeongSu Kim. All rights reserved.</p>
+      </footer>
     </div>
   );
 }
