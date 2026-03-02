@@ -29,6 +29,16 @@ projects/{project-name}/
 |------|----------|------|------|
 | 🟡 | [case-study-mdx](./case-study-mdx/spec.md) | 케이스 스터디 MDX 블로그화 | Plan |
 
+### 블로그 시리즈: Claude Code 활용기
+
+| 프로젝트 | 시리즈 | 상태 |
+|----------|--------|------|
+| [blog-mcp-super-tool](./blog-mcp-super-tool/) | #2 MCP로 Claude를 슈퍼 도구로 | ⏳ 예정 |
+| [blog-dev-docs-sync](./blog-dev-docs-sync/) | #3 Git 커밋 → 문서 자동 최신화 | ⏳ 예정 |
+| [blog-qa-automation](./blog-qa-automation/) | #4 Claude Code로 QA 자동화 | ⏳ 예정 |
+| [blog-ai-project-management](./blog-ai-project-management/) | #5 AI로 프로젝트 관리하기 | ⏳ 예정 |
+| [blog-auto-publishing](./blog-auto-publishing/) | #6 블로그 자동 발행 시스템 | ⏳ 예정 |
+
 ## 네이밍 규칙
 
 - **폴더명**: `kebab-case` (예: `site-renewal`, `blog-setup`)

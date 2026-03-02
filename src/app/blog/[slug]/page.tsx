@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
@@ -84,6 +85,20 @@ export default async function BlogDetailPage({
         </div>
       </header>
 
+      {/* Hero Image */}
+      <div className="mt-8 overflow-hidden rounded-xl border border-border">
+        <div className="relative aspect-[1200/630] w-full bg-muted">
+          <Image
+            src={post.thumbnail}
+            alt={post.title}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw, 720px"
+            priority
+          />
+        </div>
+      </div>
+
       <Separator className="my-8" />
 
       {/* Article Body */}
@@ -104,27 +119,35 @@ export default async function BlogDetailPage({
                 <Link
                   key={rp.slug}
                   href={`/blog/${rp.slug}`}
-                  className="group rounded-lg border border-border p-5 transition-all hover:border-primary/30 hover:bg-card"
+                  className="group overflow-hidden rounded-lg border border-border transition-all hover:border-primary/30 hover:shadow-md hover:shadow-primary/5"
                 >
-                  <div className="flex items-center gap-2 mb-3">
-                    {rp.tags.map((t) => (
-                      <Badge
-                        key={t}
-                        variant="outline"
-                        className="text-[10px] font-medium text-muted-foreground border-border"
-                      >
-                        {t}
-                      </Badge>
-                    ))}
+                  <div className="relative aspect-[1200/630] w-full overflow-hidden bg-muted">
+                    <Image
+                      src={rp.thumbnail}
+                      alt={rp.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      sizes="360px"
+                    />
                   </div>
-                  <h4 className="text-sm font-semibold group-hover:text-primary transition-colors leading-snug">
-                    {rp.title}
-                  </h4>
-                  <p className="mt-1.5 text-xs text-muted-foreground line-clamp-2 leading-relaxed">
-                    {rp.subtitle}
-                  </p>
-                  <div className="mt-3 inline-flex items-center gap-1 text-xs text-primary opacity-0 -translate-x-1 transition-all group-hover:opacity-100 group-hover:translate-x-0">
-                    읽기 <ArrowRight className="h-3 w-3" />
+                  <div className="p-4">
+                    <div className="flex items-center gap-2 mb-2">
+                      {rp.tags.map((t) => (
+                        <Badge
+                          key={t}
+                          variant="outline"
+                          className="text-[10px] font-medium text-muted-foreground border-border"
+                        >
+                          {t}
+                        </Badge>
+                      ))}
+                    </div>
+                    <h4 className="text-sm font-semibold group-hover:text-primary transition-colors leading-snug">
+                      {rp.title}
+                    </h4>
+                    <p className="mt-1.5 text-xs text-muted-foreground line-clamp-2 leading-relaxed">
+                      {rp.subtitle}
+                    </p>
                   </div>
                 </Link>
               ))}

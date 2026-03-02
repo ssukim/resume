@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { getAllPosts, getAllTags } from "@/data/blog";
@@ -42,7 +43,7 @@ export default async function BlogListPage({
       </Suspense>
 
       {/* Post List */}
-      <div className="mt-8 divide-y divide-border">
+      <div className="mt-8 space-y-6">
         {filteredPosts.length === 0 ? (
           <p className="py-16 text-center text-sm text-muted-foreground">
             해당 태그의 포스트가 없습니다.
@@ -52,9 +53,22 @@ export default async function BlogListPage({
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="group block py-6 first:pt-0 last:pb-0"
+              className="group block overflow-hidden rounded-xl border border-border transition-all hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5"
             >
-              <article className="space-y-3">
+              {/* Thumbnail */}
+              <div className="relative aspect-[1200/630] w-full overflow-hidden bg-muted">
+                <Image
+                  src={post.thumbnail}
+                  alt={post.title}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  sizes="(max-width: 768px) 100vw, 800px"
+                  priority
+                />
+              </div>
+
+              {/* Content */}
+              <div className="p-5 sm:p-6">
                 {/* Tag */}
                 <div className="flex items-center gap-2">
                   {post.tags.map((t) => (
@@ -68,31 +82,33 @@ export default async function BlogListPage({
                   ))}
                 </div>
 
-                {/* Title + Arrow */}
-                <div className="flex items-start justify-between gap-4">
-                  <h3 className="text-lg font-semibold tracking-tight group-hover:text-primary transition-colors sm:text-xl">
-                    {post.title}
-                  </h3>
-                  <ArrowRight className="mt-1 h-4 w-4 shrink-0 text-muted-foreground opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-primary" />
-                </div>
+                {/* Title */}
+                <h3 className="mt-3 text-lg font-semibold tracking-tight group-hover:text-primary transition-colors sm:text-xl">
+                  {post.title}
+                </h3>
 
                 {/* Subtitle */}
-                <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed line-clamp-2">
                   {post.subtitle}
                 </p>
 
-                {/* Meta */}
-                <div className="flex items-center gap-3 text-xs text-muted-foreground/60">
-                  <span className="inline-flex items-center gap-1">
-                    <Calendar className="h-3 w-3" />
-                    {post.date}
-                  </span>
-                  <span className="inline-flex items-center gap-1">
-                    <Clock className="h-3 w-3" />
-                    {post.readingTime}
+                {/* Meta + Read more */}
+                <div className="mt-4 flex items-center justify-between">
+                  <div className="flex items-center gap-3 text-xs text-muted-foreground/60">
+                    <span className="inline-flex items-center gap-1">
+                      <Calendar className="h-3 w-3" />
+                      {post.date}
+                    </span>
+                    <span className="inline-flex items-center gap-1">
+                      <Clock className="h-3 w-3" />
+                      {post.readingTime}
+                    </span>
+                  </div>
+                  <span className="inline-flex items-center gap-1 text-xs font-medium text-primary opacity-0 -translate-x-2 transition-all group-hover:opacity-100 group-hover:translate-x-0">
+                    읽기 <ArrowRight className="h-3 w-3" />
                   </span>
                 </div>
-              </article>
+              </div>
             </Link>
           ))
         )}

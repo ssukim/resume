@@ -7,19 +7,21 @@ export interface BlogPost {
   description: string;
   author: string;
   readingTime: string;
+  thumbnail: string;
 }
 
 export const blogPosts: BlogPost[] = [
   {
-    slug: "claude-code-productivity",
-    title: "Claude Code로 개발 생산성 3배 높이기",
-    subtitle: "AI 코딩 어시스턴트를 실무 워크플로에 통합한 경험",
-    date: "2026-03-01",
+    slug: "claude-md-ai-onboarding",
+    title: "CLAUDE.md 하나로 AI를 팀원으로 만든 방법",
+    subtitle: "Claude Code를 문서 자동화 엔진으로 활용한 실무 사례",
+    date: "2026-03-02",
     tags: ["AI"],
     description:
-      "Claude Code를 실무 개발 워크플로에 도입하고, 생산성을 극적으로 개선한 방법과 팁을 정리했습니다.",
+      "CLAUDE.md 파일에 명령어 체계와 프로세스를 정의해서 Claude Code를 팀의 실질적인 팀원으로 만든 경험을 공유합니다.",
     author: "JeongSu Kim",
-    readingTime: "5분",
+    readingTime: "7분",
+    thumbnail: "/images/blog/claude-md-ai-onboarding.svg",
   },
 ];
 
