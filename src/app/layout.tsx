@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "JeongSu Kim | Frontend Developer",
-  description: "운영을 전제로 구현하는 개발자 김정수의 이력서",
+  title: "JeongSu Kim | Product Engineer",
+  description: "AI와 함께 제품을 만드는 프로덕트 엔지니어 김정수의 이력서 & 케이스 스터디",
 };
 
 export default function RootLayout({

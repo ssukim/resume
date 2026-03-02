@@ -1,3 +1,6 @@
+"use client";
+
+import { useState, useRef, useCallback } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -10,18 +13,24 @@ import {
   Heart,
   Award,
   ExternalLink,
-  AlertCircle,
-  UserCheck,
-  CheckCircle2,
-  Trophy,
   User,
+  ChevronDown,
+  Lightbulb,
+  Target,
+  Wrench,
+  TrendingUp,
+  BookOpen,
+  Menu,
+  X,
 } from "lucide-react";
+
+// ─── Data ────────────────────────────────────────────────────
 
 const careers = [
   {
     company: "디지털로그",
     url: "https://social.digitalog.ai",
-    role: "Frontend Developer Lead",
+    role: "Product Engineer",
     period: "2024.08 - 현재",
   },
   {
@@ -53,44 +62,32 @@ const careers = [
 const projects = [
   {
     company: "디지털로그",
-    companyDescription: "마케팅 과정에서 반복되고 비효율적인 수작업을 자동화 서비스",
+    companyDescription: "인스타그램 마케팅 운영 과정의 반복 업무를 자동화하는 SNS 마케팅 플랫폼",
     items: [
       {
         name: "Conma",
         url: "https://social.digitalog.ai/",
-        description: "인스타그램 댓글·이벤트·리포트 통합 관리 웹",
+        description: "인스타그램 댓글·DM 자동화·리포트 통합 관리 웹",
         tech: ["Next.js 16", "React 19", "TypeScript", "Zustand", "SWR", "TailwindCSS", "Shadcn UI", "AWS EKS", "Docker", "GitHub Actions"],
         subProjects: [
           {
             name: "Conma 플랫폼",
             period: "2025.09 ~ 현재",
             problem: "인플루언서, 브랜드, 마케팅 대행사가 Instagram 캠페인을 운영하는 과정에서 댓글 관리, DM 응대, 성과 확인 등이 수작업 중심으로 이루어져 반복 업무와 운영 비효율이 누적되는 문제",
-            role: "유저 인터뷰 기반 기획에 참여해 플랫폼 프론트엔드 구조 설계와 주요 기능 개발을 리드",
+            role: "Claude Code 기반 AI 개발 워크플로를 구축하고, 기획부터 프론트엔드 설계·인프라까지 제품 전반을 리드",
             contributions: [
-              "프론트엔드 구조 설계",
-              "유저 인터뷰를 통한 요구사항 및 사용 패턴 분석",
-              "피처 단위로 개발을 담당하며 팀원과 협업",
+              "Claude Code를 활용한 AI 기반 개발 환경 구축 — 기획서 분석, 코드 구현, Playwright MCP 연동 QA 자동화",
+              "댓글 키워드 기반 DM 자동 응대 — 3-Step 자동화 플로우 설계, Zustand 멀티스텝 폼, Optimistic Update, LIVE 충돌 감지 UX 구현",
+              "Instagram OAuth 계정 연동, 댓글 관리(검색·필터·CSV 내보내기·벌크 액션), 블로그 플랫폼(TipTap 에디터) 등 핵심 기능 설계·구현",
+              "다국어(i18n) 지원, K8s 기반 개발·운영 환경 분리, 모니터링(Prometheus+Grafana+Loki) 구축",
+              "SEO & AI 검색 최적화 — ISR 전환, 시맨틱 HTML 개선, AI 봇(GPTBot, ClaudeBot) 허용으로 AI 검색 노출 확보",
             ],
-            achievements: ["2026년 1월 기준 누적 유저 250명 확보"],
-          },
-          {
-            name: "개발 환경 클러스터 구축",
-            period: "2025.11",
-            problem: "단일 환경에서 개발, 운영이 이루어져 배포 리스크 및 장애 원인 추적이 어려운 상황",
-            role: "개발 환경 플랫폼 인프라 구축",
-            contributions: ["운영 클러스터 구성을 기준으로 개발 전용 Kubernetes 클러스터 구축"],
-            achievements: ["개발, 운영 환경 분리를 통한 테스트 환경, 배포 안정성 확보"],
-          },
-          {
-            name: "운영 환경 모니터링 구축",
-            period: "2025.12",
-            problem: "운영 환경에서 pod 재생성 시 로그 유실로 장애 발생을 즉시 인지하지 못하는 문제",
-            role: "운영 환경 서비스 모니터링 구축",
-            contributions: [
-              "개발자가 운영 로그를 조회할 수 있는 로그 모니터링 환경 구성",
-              "pod 장애 발생 시 Slack 알림을 통해 즉각 인지 가능한 운영 환경 구축",
+            achievements: [
+              "DM 자동 응대 도입으로 마케터 댓글 응대 시간 하루 2시간 → 초기 설정 5분으로 단축",
+              "댓글 벌크 액션 도입으로 100건 기준 관리 시간 30분 → 1분 이내로 단축",
+              "AI 개발 워크플로 도입 후 MVP 이후 3개 핵심 피처 연속 출시, 누적 가입 유저 250명 확보",
+              "AI 검색엔진(ChatGPT, Perplexity) 노출 달성",
             ],
-            achievements: ["pod 재생성 이후에도 최근 2주간 로그 조회 가능 환경 확보"],
           },
         ],
       },
@@ -98,31 +95,22 @@ const projects = [
         name: "Biz Calendar",
         description: "마케팅 조직의 캠페인, 콘텐츠, 태스크, 일정을 한 워크스페이스에서 통합 관리 웹",
         serviceClosed: true,
-        tech: ["Next.js 15", "React 19", "TypeScript", "Zustand", "SWR", "TailwindCSS", "Shadcn UI", "AWS EKS", "Docker", "GitHub Actions"],
+        tech: ["Next.js 15", "React 19", "TypeScript", "Zustand", "SWR", "TailwindCSS", "Shadcn UI", "Toss Payments", "AWS EKS", "Docker", "GitHub Actions"],
         subProjects: [
           {
             name: "BizCalendar 플랫폼",
             period: "2024.08 ~ 2025.07",
-            problem: "개인 단위 엑셀 기반으로 마케팅 일정과 캠페인을 관리해 팀 단위 협업 및 일정 공유가 어려운 환경",
-            role: "기획 단계부터 참여해 BizCalendar 플랫폼 프론트엔드 구조 설계와 주요 기능 개발을 리드",
+            problem: "마케팅 팀이 개인 엑셀로 캠페인 일정을 관리해 팀 간 일정 충돌과 공유 누락이 반복되는 환경",
+            role: "기획 단계부터 참여해 캘린더 뷰 체계 설계, 결제·인증 시스템 구현, GS 인증까지 프론트엔드 전반을 리드",
             contributions: [
-              "프론트엔드 구조 설계",
-              "스킨1004, HLB, SM 등 협업사와 오픈이노베이션 방식으로 캠페인 운영 기능 공동 기획 및 개발",
-              "Google Calendar, Jira 사용 패턴 분석 기반 연간, 월간, 주간, 타임라인 뷰 설계 및 구현",
-              "피처 단위로 개발을 담당하며 팀원과 협업",
+              "Google Calendar·Jira 사용 패턴 분석 기반 7개 캘린더 뷰(연간·월간·주간·타임라인·플래너·분기·리스트) 설계 및 구현",
+              "드래그 앤 드롭 시스템(일정 이동·리사이즈·크로스 뷰 DnD), 멀티 타임존 지원 구현",
+              "Toss Payments 연동 결제 플로우, OAuth 소셜 로그인, GS 인증 테스트 환경 구축",
             ],
             achievements: [
-              "BizCalendar MVP를 기반으로 TIPS 투자 유치 성공",
-              "개인 엑셀 기반 일정 관리를 팀 단위 마케팅 캘린더 서비스로 전환",
+              "BizCalendar MVP를 기반으로 TIPS 투자 유치 성공 (정부 기술창업 프로그램)",
+              "엑셀 기반 일정 관리를 팀 단위 마케팅 캘린더 SaaS로 전환, 3개 협업사 파일럿 운영 / GS 1등급 인증 획득",
             ],
-          },
-          {
-            name: "GS 인증 대응 테스트 환경 구축",
-            period: "2025.03",
-            problem: "GS 인증 요건을 충족하기 위한 별도 검증 및 테스트 환경이 필요한 상황",
-            role: "테스트 환경 구축 담당",
-            contributions: ["GS 인증 요건 충족을 위한 신규 테스트 환경 구축"],
-            achievements: ["GS 1등급 인증 획득"],
           },
         ],
       },
@@ -472,9 +460,79 @@ const skills = [
   { category: "Frontend", items: ["React", "Next.js", "React Native"] },
   { category: "State Management", items: ["Zustand", "SWR", "Recoil", "Jotai", "Mobx"] },
   { category: "Styling", items: ["TailwindCSS", "Shadcn UI", "Mantine UI", "Styled Components"] },
+  { category: "AI Tools", items: ["Claude Code", "Cursor", "Figma MCP", "Playwright MCP"] },
   { category: "DevOps", items: ["Docker", "AWS EKS", "GitHub Actions", "Kubernetes"] },
   { category: "Tools", items: ["Git", "pnpm", "Storybook", "Lerna"] },
 ];
+
+interface CaseStudy {
+  title: string;
+  subtitle: string;
+  tags: string[];
+  sections: {
+    background: string;
+    approach: string;
+    implementation: string;
+    result: string;
+    learnings: string;
+  };
+}
+
+const caseStudies: CaseStudy[] = [
+  {
+    title: "마케터의 2시간을 5분으로",
+    subtitle: "댓글 키워드 기반 DM 자동 응대 설계 과정",
+    tags: ["Product Design", "UX", "Automation"],
+    sections: {
+      background:
+        "유저 인터뷰에서 인스타그램 마케터들이 댓글 응대에 하루 평균 2시간 이상을 소모한다는 사실을 발견했습니다. 특히 \"가격 알려주세요\", \"구매 링크 보내주세요\" 같은 반복 댓글에 일일이 DM을 보내는 작업이 가장 큰 병목이었습니다. 기존 자동화 도구들은 모든 댓글에 동일한 메시지를 보내거나, 설정이 복잡해 마케터가 실제로 사용하기 어려웠습니다.",
+      approach:
+        "핵심 인사이트는 \"마케터는 모든 댓글에 응대하고 싶은 게 아니라, 특정 키워드가 포함된 댓글에만 맞춤 DM을 보내고 싶다\"는 것이었습니다. 이를 3-Step으로 단순화했습니다: (1) 키워드 설정 — 어떤 댓글에 반응할지, (2) DM 메시지 작성 — 무엇을 보낼지, (3) 활성화 — 언제부터 동작할지. 복잡한 조건 분기나 플로우차트 없이, 마케터가 5분 안에 설정을 완료할 수 있는 구조를 목표로 설계했습니다.",
+      implementation:
+        "Zustand 기반 멀티스텝 폼으로 3단계 설정 플로우를 구현했습니다. 각 단계에서 입력값 유효성을 실시간 검증하고, 이전 단계로 돌아가도 데이터가 유지되도록 설계했습니다. 자동 응대가 LIVE 상태일 때 다른 사용자가 동시에 수정하면 충돌이 발생할 수 있어, Optimistic Update와 LIVE 충돌 감지 UX를 구현했습니다. 서버 상태와 클라이언트 상태가 불일치하면 사용자에게 즉시 알림을 표시하고 최신 상태로 동기화하는 방식입니다.",
+      result:
+        "마케터의 댓글 응대 시간이 하루 2시간에서 초기 설정 5분으로 단축되었습니다. 설정 완료 후에는 수동 개입 없이 자동으로 동작합니다. 3-Step 설정 플로우의 완료율은 높은 수준을 유지하고 있으며, \"설정이 너무 간단해서 처음에 다 된 건지 의심했다\"는 사용자 피드백을 받았습니다.",
+      learnings:
+        "자동화의 핵심은 기술적 구현이 아니라 사용자의 멘탈 모델에 맞는 설계라는 것을 체감했습니다. 처음에는 조건 분기, A/B 테스트 메시지, 시간대별 발송 등 다양한 기능을 고려했지만, MVP에서는 \"키워드 → DM\" 이라는 가장 단순한 플로우만 남겼습니다. 복잡한 기능은 사용자가 요청할 때 추가하면 되지만, 첫 경험이 복잡하면 사용자는 떠납니다.",
+    },
+  },
+  {
+    title: "Claude Code로 제품 만들기",
+    subtitle: "AI 개발 워크플로 구축기",
+    tags: ["AI", "Developer Experience", "Productivity"],
+    sections: {
+      background:
+        "2인 스타트업에서 프론트엔드 개발자 1명이 기획, 설계, 구현, QA까지 담당해야 하는 상황이었습니다. 전통적인 개발 프로세스로는 피처 하나를 출시하는 데 2-3주가 걸렸고, QA는 수동으로 진행하다 보니 놓치는 케이스가 많았습니다. 개발 속도와 품질, 두 마리 토끼를 잡아야 했습니다.",
+      approach:
+        "Claude Code를 단순한 코드 생성 도구가 아닌 \"개발 파트너\"로 포지셔닝했습니다. CLAUDE.md에 프로젝트 컨텍스트(폴더 구조, 네이밍 규칙, 컴포넌트 패턴)를 정의하고, 기획서를 마크다운으로 작성해 Claude가 전체 맥락을 이해한 상태에서 작업하도록 했습니다. Playwright MCP를 연동해 QA 체크리스트를 자동 실행하는 워크플로도 구축했습니다.",
+      implementation:
+        "개발 워크플로를 3단계로 구조화했습니다: (1) 기획 단계 — 마크다운 스펙 문서를 작성하면 Claude가 분석해 구현 계획을 제안, (2) 구현 단계 — Claude Code가 코드를 생성하고 개발자가 리뷰·수정, (3) QA 단계 — Playwright MCP로 체크리스트 기반 자동 테스트 실행. conma-hub 저장소에 모든 기획서, 리뷰, 체인지로그를 체계적으로 관리해 Claude가 이전 맥락을 참조할 수 있도록 했습니다.",
+      result:
+        "MVP 이후 DM 자동 응대, 댓글 벌크 액션, 블로그 플랫폼 등 3개 핵심 피처를 연속 출시했습니다. Playwright MCP 기반 QA 자동화로 수동 테스트 시간을 크게 줄이면서도 테스트 커버리지를 높였습니다. 누적 가입 유저 250명을 확보하며 제품의 시장 검증을 진행 중입니다.",
+      learnings:
+        "AI 도구의 효과는 도구 자체보다 \"어떤 컨텍스트를 제공하느냐\"에 달려 있다는 것을 배웠습니다. CLAUDE.md 없이 사용하면 일반적인 코드를 생성하지만, 프로젝트의 규칙과 패턴을 정의하면 팀원처럼 일관된 코드를 작성합니다. 또한 AI가 잘하는 영역(반복 코드 생성, 패턴 적용)과 사람이 해야 하는 영역(제품 판단, UX 의사결정)을 명확히 구분하는 것이 중요했습니다.",
+    },
+  },
+  {
+    title: "AI 검색엔진에 노출되기까지",
+    subtitle: "SEO & AI 검색 최적화 여정",
+    tags: ["SEO", "Growth", "AI"],
+    sections: {
+      background:
+        "ChatGPT, Perplexity 같은 AI 검색엔진이 점점 더 많은 트래픽을 가져가는 상황에서, 전통적인 Google SEO만으로는 제품 노출에 한계가 있었습니다. AI 검색엔진은 웹페이지를 크롤링해 답변을 생성하는데, 대부분의 웹사이트가 AI 봇의 접근을 차단하고 있어 AI 검색 결과에 노출되기 어려운 구조였습니다.",
+      approach:
+        "두 가지 방향을 동시에 추진했습니다: (1) 기술적 최적화 — AI 봇(GPTBot, ClaudeBot, PerplexityBot)이 콘텐츠를 읽을 수 있도록 robots.txt와 메타 태그를 설정하고, SSR/ISR 기반으로 크롤러가 완전한 HTML을 받을 수 있도록 렌더링 전략을 전환, (2) 콘텐츠 최적화 — AI가 이해하기 쉬운 시맨틱 HTML 구조로 개선하고, 블로그 플랫폼을 통해 제품 관련 양질의 콘텐츠를 지속적으로 생산.",
+      implementation:
+        "Next.js의 렌더링 전략을 CSR에서 ISR(Incremental Static Regeneration)로 전환해 크롤러가 JavaScript 실행 없이도 콘텐츠를 읽을 수 있도록 했습니다. robots.txt에 GPTBot, ClaudeBot, PerplexityBot을 명시적으로 Allow 처리했습니다. 시맨틱 HTML로 페이지 구조를 개선하고, Open Graph 메타 태그와 구조화된 데이터(JSON-LD)를 추가했습니다. 블로그 플랫폼에는 TipTap 에디터를 도입해 팀원 누구나 콘텐츠를 작성할 수 있게 했습니다.",
+      result:
+        "ChatGPT와 Perplexity에서 인스타그램 마케팅 자동화 관련 질문에 Conma가 노출되기 시작했습니다. AI 검색엔진을 통한 유기적 유입이 발생하며, 별도의 광고비 없이 제품 인지도가 상승했습니다. 블로그 콘텐츠가 AI 검색 결과의 참조 소스로 활용되면서 브랜드 신뢰도 향상에도 기여했습니다.",
+      learnings:
+        "AI 검색 최적화는 기존 SEO의 연장선이 아닌, 별도의 전략이 필요하다는 것을 배웠습니다. Google은 키워드 매칭과 백링크를 중시하지만, AI 검색엔진은 콘텐츠의 명확성과 구조화를 더 중시합니다. 또한 AI 봇을 차단하는 것이 일반적인 업계 관행이지만, 스타트업 입장에서는 오히려 AI 봇을 적극 허용해 노출 기회를 만드는 것이 유리했습니다.",
+    },
+  },
+];
+
+// ─── Types ────────────────────────────────────────────────────
 
 interface SubProject {
   name: string;
@@ -494,17 +552,21 @@ interface ProjectItem {
   subProjects: SubProject[];
 }
 
+type Tab = "resume" | "case-study";
+
+// ─── Resume Components ───────────────────────────────────────
+
 function SubProjectCard({ subProject }: { subProject: SubProject }) {
   return (
-    <div className="border-l-2 border-primary/40 pl-5 py-3 transition-colors hover:border-primary/60">
+    <div className="border-l-2 border-primary/30 rounded-lg bg-muted/30 p-4 transition-colors hover:border-primary/50">
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between mb-4">
         <h6 className="font-semibold text-base text-foreground">{subProject.name}</h6>
         <Badge variant="outline" className="w-fit text-xs font-medium shrink-0">
           {subProject.period}
         </Badge>
       </div>
-      
-      <div className="space-y-3 text-sm text-primary/90 leading-relaxed">
+
+      <div className="space-y-3 text-sm text-foreground/80 leading-relaxed">
         {subProject.problem && (
           <div className="mb-3">
             <span className="text-xs font-semibold text-foreground uppercase tracking-wide mb-1.5 block">
@@ -513,14 +575,14 @@ function SubProjectCard({ subProject }: { subProject: SubProject }) {
             <p className="pl-5">{subProject.problem}</p>
           </div>
         )}
-        
+
         <div className="mb-3">
           <span className="text-xs font-semibold text-foreground uppercase tracking-wide mb-1.5 block">
             주요 역할
           </span>
           <p className="pl-5">{subProject.role}</p>
         </div>
-        
+
         <div className="mb-3">
           <span className="text-xs font-semibold text-foreground uppercase tracking-wide mb-1.5 block">
             기여 범위
@@ -531,7 +593,7 @@ function SubProjectCard({ subProject }: { subProject: SubProject }) {
             ))}
           </div>
         </div>
-        
+
         {subProject.achievements && subProject.achievements.length > 0 && (
           <div className="mb-3">
             <span className="text-xs font-semibold text-primary uppercase tracking-wide mb-1.5 block">
@@ -539,51 +601,38 @@ function SubProjectCard({ subProject }: { subProject: SubProject }) {
             </span>
             <div className="pl-5 space-y-1 mt-1">
               {subProject.achievements.map((achievement, i) => {
-                // HTML 파일의 bold 패턴에 맞춰서 숫자, 수치, 핵심 키워드를 bold 처리
                 const formatAchievement = (text: string) => {
-                  // 숫자와 화살표가 포함된 패턴 (예: "3분 5초 → 2분 57초", "15.4초 → 14.7초", "0.19% → 0.12%", "56.16% → 93.28%")
                   let formatted = text.replace(
                     /(\d+\.?\d*[%초분]?\s*→\s*\d+\.?\d*[%초분초]?)/g,
                     '<strong>$1</strong>'
                   );
-                  
-                  // 숫자 + 단위 패턴 (예: "250명", "70명", "13PCS", "14건", "60개", "30%", "100만", "2주간")
                   formatted = formatted.replace(
                     /(\d+\.?\d*[만명건개%PCS주간]+)/g,
                     '<strong>$1</strong>'
                   );
-                  
-                  // "약 XX" 패턴 (예: "약 60개", "약 70명")
                   formatted = formatted.replace(
                     /(약\s+\d+[만명건개%PCS주간]+)/g,
                     '<strong>$1</strong>'
                   );
-                  
-                  // 특정 키워드 패턴
                   formatted = formatted.replace(
                     /(크리티컬 휴먼 에러|마케터가 직접 사용할 수 있는 Admin|최근 2주간 로그 조회 가능 환경 확보)/g,
                     '<strong>$1</strong>'
                   );
-                  
-                  // "XX% 수준의" 패턴 (예: "30% 수준의")
                   formatted = formatted.replace(
                     /(\d+% 수준의)/g,
                     '<strong>$1</strong>'
                   );
-                  
-                  // "XX% 고객 불만 감소" 패턴
                   formatted = formatted.replace(
                     /(\d+% 고객 불만 감소)/g,
                     '<strong>$1</strong>'
                   );
-                  
                   return formatted;
                 };
-                
+
                 return (
-                  <p 
-                    key={i} 
-                    className="text-primary/90"
+                  <p
+                    key={i}
+                    className="text-foreground/80"
                     dangerouslySetInnerHTML={{ __html: formatAchievement(achievement) }}
                   />
                 );
@@ -598,7 +647,7 @@ function SubProjectCard({ subProject }: { subProject: SubProject }) {
 
 function ProjectCard({ project }: { project: ProjectItem }) {
   return (
-    <Card className="group transition-all hover:shadow-lg hover:shadow-primary/5">
+    <Card className="group border-l-4 border-l-primary/30 transition-all hover:shadow-lg hover:shadow-primary/5">
       <CardHeader className="pb-4">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
           <div className="flex-1">
@@ -629,7 +678,7 @@ function ProjectCard({ project }: { project: ProjectItem }) {
         </div>
       </CardHeader>
       <CardContent className="pt-0">
-        <div className="mb-5 flex flex-wrap gap-1.5">
+        <div className="mb-5 flex flex-wrap gap-2">
           {project.tech.map((t) => (
             <Badge key={t} variant="secondary" className="text-xs font-medium">
               {t}
@@ -646,210 +695,438 @@ function ProjectCard({ project }: { project: ProjectItem }) {
   );
 }
 
-// 정적 페이지로 설정
-export const dynamic = 'force-static';
-export const revalidate = false;
+// ─── Resume Content ──────────────────────────────────────────
 
-export default function Home() {
+function ResumeContent() {
   return (
-    <div className="min-h-screen bg-background">
-      <div className="mx-auto max-w-4xl px-4 py-12 sm:px-6 lg:px-8">
-        {/* Header */}
-        <header className="mb-16">
-          <p className="mb-4 text-xs text-muted-foreground/70 uppercase tracking-wider">
-            Last Updated. 2026/01/25
+    <>
+      {/* Introduction */}
+      <section className="mb-16">
+        <h3 className="mb-6 flex items-center gap-3 text-xl font-semibold sm:text-2xl">
+          <User className="h-5 w-5 text-primary" /> 자기소개
+        </h3>
+        <div className="space-y-4 text-foreground/80 leading-relaxed sm:text-base">
+          <p className="pl-1">
+            유저 인터뷰에서 마케터가 댓글 응대에 하루 평균 2시간 이상을
+            소모한다는 문제를 발견하고, 댓글 키워드 기반 DM 자동 응대 기능을
+            기획·설계·구현해 수동 응대를 완전 자동화한 프로덕트 엔지니어입니다.
           </p>
-          <h1 className="mb-3 text-4xl font-bold tracking-tight sm:text-5xl">
-            운영을 전제로 구현하는 개발자
-          </h1>
-          <h2 className="mb-8 text-3xl font-semibold text-primary sm:text-4xl">
-            JeongSu Kim
-          </h2>
+          <p className="pl-1">
+            Claude Code를 개발 파트너로 활용해 기획서 분석, 코드 구현, QA
+            자동화까지 AI 기반 개발 워크플로를 구축하고, 이를 통해 빠른
+            피처 사이클을 유지하며 제품을 만들고 있습니다.
+          </p>
+          <p className="pl-1">
+            AI 검색엔진(ChatGPT, Perplexity) 최적화, AI 봇 크롤링 허용
+            설정 등 AI 시대에 맞는 제품 노출 전략까지 설계하고 구현합니다.
+          </p>
+        </div>
+      </section>
 
-          <div className="flex flex-wrap gap-4 text-sm text-primary/90">
-            <a
-              href="tel:010-8743-9512"
-              className="group flex items-center gap-2 rounded-lg px-3 py-2 transition-all hover:bg-muted hover:text-foreground"
+      <Separator className="my-16" />
+
+      {/* Career */}
+      <section className="mb-16">
+        <h3 className="mb-6 flex items-center gap-3 text-xl font-semibold sm:text-2xl">
+          <Briefcase className="h-5 w-5 text-primary" /> 경력
+        </h3>
+        <div className="space-y-3">
+          {careers.map((career) => (
+            <Card
+              key={career.company}
+              className="group border-l-4 border-l-primary transition-all hover:shadow-lg hover:shadow-primary/5"
             >
-              <Phone className="h-4 w-4 transition-transform group-hover:scale-110" />
-              010-8743-9512
-            </a>
-            <a
-              href="mailto:ssukim0930@gmail.com"
-              className="group flex items-center gap-2 rounded-lg px-3 py-2 transition-all hover:bg-muted hover:text-foreground"
-            >
-              <Mail className="h-4 w-4 transition-transform group-hover:scale-110" />
-              ssukim0930@gmail.com
-            </a>
-          </div>
-        </header>
-
-        <Separator className="my-12" />
-
-        {/* Introduction */}
-        <section className="mb-16">
-          <h3 className="mb-6 flex items-center gap-3 text-xl font-semibold sm:text-2xl">
-            <User className="h-5 w-5 text-primary" /> 자기소개
-          </h3>
-          <div className="space-y-4 text-primary/90 leading-relaxed sm:text-base">
-            <p className="pl-1">
-              신규 프로젝트의 초기 기획과 설계 단계부터 참여해 프론트엔드 구조
-              설계와 구축을 주도해왔습니다.
-            </p>
-            <p className="pl-1">
-              레거시 플랫폼을 분석해 확장 가능한 아키텍처를 설계하고, 신규
-              플랫폼으로의 전환을 이끌며 서비스 전반의 구조를 개선했습니다.
-            </p>
-            <p className="pl-1">
-              기획, 개발, 운영 전반에 참여해 사용자 경험을 개선했으며, 개선
-              효과를 실제 사용자 사용과 운영 지표로 효과를 확인했습니다.
-            </p>
-          </div>
-        </section>
-
-        <Separator className="my-12" />
-
-        {/* Career */}
-        <section className="mb-16">
-          <h3 className="mb-6 flex items-center gap-3 text-xl font-semibold sm:text-2xl">
-            <Briefcase className="h-5 w-5 text-primary" /> 경력
-          </h3>
-          <div className="space-y-3">
-            {careers.map((career) => (
-              <Card 
-                key={career.company} 
-                className="group border-l-4 border-l-primary transition-all hover:shadow-lg hover:shadow-primary/5"
-              >
-                <CardContent className="py-5">
-                  <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-                    <div className="flex-1">
-                      <a
-                        href={career.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 font-semibold text-primary transition-all hover:gap-2 hover:underline"
-                      >
-                        {career.company}
-                        <ExternalLink className="h-3.5 w-3.5 transition-transform group-hover:scale-110" />
-                      </a>
-                      <p className="mt-1 text-sm text-muted-foreground">
-                        {career.role}
-                      </p>
-                    </div>
-                    <Badge variant="secondary" className="w-fit shrink-0 font-medium">
-                      {career.period}
-                    </Badge>
+              <CardContent className="py-5">
+                <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="flex-1">
+                    <a
+                      href={career.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 font-semibold text-primary transition-all hover:gap-2 hover:underline"
+                    >
+                      {career.company}
+                      <ExternalLink className="h-3.5 w-3.5 transition-transform group-hover:scale-110" />
+                    </a>
+                    <p className="mt-1 text-sm text-muted-foreground">
+                      {career.role}
+                    </p>
                   </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-
-        <Separator className="my-12" />
-
-        {/* Projects */}
-        <section className="mb-16">
-          <h3 className="mb-8 flex items-center gap-3 text-xl font-semibold sm:text-2xl">
-            <FolderOpen className="h-5 w-5 text-primary" /> 프로젝트
-          </h3>
-          <div className="space-y-12">
-            {projects.map((group) => (
-              <div key={group.company}>
-                <div className="mb-6">
-                  <h4 className="text-lg font-semibold text-primary flex items-center gap-2 sm:text-xl">
-                    {group.company}
-                    <span className="text-lg">💼</span>
-                  </h4>
-                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                    {group.companyDescription}
-                  </p>
+                  <Badge variant="secondary" className="w-fit shrink-0 font-medium">
+                    {career.period}
+                  </Badge>
                 </div>
-                <div className="space-y-5">
-                  {group.items.map((project) => (
-                    <ProjectCard key={project.name} project={project} />
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      <Separator className="my-16" />
+
+      {/* Projects */}
+      <section className="mb-16">
+        <h3 className="mb-8 flex items-center gap-3 text-xl font-semibold sm:text-2xl">
+          <FolderOpen className="h-5 w-5 text-primary" /> 프로젝트
+        </h3>
+        <div className="space-y-12">
+          {projects.map((group) => (
+            <div key={group.company}>
+              <div className="mb-6">
+                <h4 className="text-lg font-semibold text-primary flex items-center gap-2 sm:text-xl">
+                  {group.company}
+                  <span className="text-lg">💼</span>
+                </h4>
+                <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                  {group.companyDescription}
+                </p>
+              </div>
+              <div className="space-y-5">
+                {group.items.map((project) => (
+                  <ProjectCard key={project.name} project={project} />
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <Separator className="my-16" />
+
+      {/* Skills */}
+      <section className="mb-16">
+        <h3 className="mb-6 flex items-center gap-3 text-lg font-semibold sm:text-xl">
+          <Heart className="h-5 w-5 text-primary" /> Favorite Skills
+        </h3>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {skills.map((skill) => (
+            <Card key={skill.category} className="transition-all hover:shadow-md hover:shadow-primary/5">
+              <CardHeader className="pb-3">
+                <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">
+                  {skill.category}
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-wrap gap-2">
+                  {skill.items.map((item) => (
+                    <Badge key={item} variant="secondary" className="text-xs font-medium">
+                      {item}
+                    </Badge>
                   ))}
                 </div>
-              </div>
-            ))}
-          </div>
-        </section>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
 
-        <Separator className="my-12" />
+      <Separator className="my-16" />
 
-        {/* Skills */}
-        <section className="mb-16">
-          <h3 className="mb-6 flex items-center gap-3 text-xl font-semibold sm:text-2xl">
-            <Heart className="h-5 w-5 text-primary" /> Favorite Skills
+      {/* Education & ETC */}
+      <section className="grid gap-8 sm:grid-cols-2">
+        <div>
+          <h3 className="mb-4 flex items-center gap-3 text-lg font-semibold sm:text-xl">
+            <GraduationCap className="h-5 w-5 text-primary" /> Education
           </h3>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {skills.map((skill) => (
-              <Card key={skill.category} className="transition-all hover:shadow-md hover:shadow-primary/5">
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">
-                    {skill.category}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="flex flex-wrap gap-1.5">
-                    {skill.items.map((item) => (
-                      <Badge key={item} variant="secondary" className="text-xs font-medium">
-                        {item}
-                      </Badge>
-                    ))}
+          <Card className="transition-all hover:shadow-md hover:shadow-primary/5">
+            <CardContent className="py-5">
+              <p className="font-semibold text-base">서일대학교</p>
+              <p className="mt-1 text-sm text-muted-foreground">
+                컴퓨터공학 학사 졸업
+              </p>
+            </CardContent>
+          </Card>
+        </div>
+
+        <div>
+          <h3 className="mb-4 flex items-center gap-3 text-lg font-semibold sm:text-xl">
+            <Award className="h-5 w-5 text-primary" /> ETC
+          </h3>
+          <Card className="transition-all hover:shadow-md hover:shadow-primary/5">
+            <CardContent className="space-y-3 py-5">
+              <div className="flex items-center justify-between">
+                <p className="text-sm font-medium">육군 병장 만기 전역</p>
+                <Badge variant="outline" className="text-xs font-medium">
+                  2011.06 - 2013.03
+                </Badge>
+              </div>
+              <div className="flex items-center justify-between">
+                <p className="text-sm font-medium">정보처리산업기사</p>
+                <Badge variant="outline" className="text-xs font-medium">
+                  2017.05.26
+                </Badge>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+    </>
+  );
+}
+
+// ─── Case Study Components ───────────────────────────────────
+
+const sectionMeta: {
+  key: keyof CaseStudy["sections"];
+  label: string;
+  icon: React.ReactNode;
+}[] = [
+  { key: "background", label: "배경", icon: <Lightbulb className="h-4 w-4" /> },
+  { key: "approach", label: "접근법", icon: <Target className="h-4 w-4" /> },
+  { key: "implementation", label: "핵심 구현", icon: <Wrench className="h-4 w-4" /> },
+  { key: "result", label: "결과", icon: <TrendingUp className="h-4 w-4" /> },
+  { key: "learnings", label: "배운 점", icon: <BookOpen className="h-4 w-4" /> },
+];
+
+function CaseStudyCard({ study }: { study: CaseStudy }) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <Card className="group transition-all hover:shadow-lg hover:shadow-primary/5">
+      <CardHeader
+        className="cursor-pointer select-none"
+        onClick={() => setIsOpen((prev) => !prev)}
+      >
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex-1">
+            <CardTitle className="text-base sm:text-lg">{study.title}</CardTitle>
+            <p className="mt-1.5 text-sm text-muted-foreground leading-relaxed">
+              {study.subtitle}
+            </p>
+            <div className="mt-3 flex flex-wrap gap-1.5">
+              {study.tags.map((tag) => (
+                <Badge key={tag} variant="secondary" className="text-xs font-medium">
+                  {tag}
+                </Badge>
+              ))}
+            </div>
+          </div>
+          <ChevronDown
+            className={`h-5 w-5 shrink-0 text-muted-foreground transition-transform duration-200 ${
+              isOpen ? "rotate-180" : ""
+            }`}
+          />
+        </div>
+      </CardHeader>
+
+      <div
+        className={`grid transition-[grid-template-rows] duration-300 ease-out ${
+          isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+        }`}
+      >
+        <div className="overflow-hidden">
+          <CardContent className="pt-0">
+            <Separator className="mb-6" />
+            <div className="space-y-6">
+              {sectionMeta.map(({ key, label, icon }) => (
+                <div key={key}>
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-primary">{icon}</span>
+                    <span className="text-xs font-semibold text-foreground uppercase tracking-wide">
+                      {label}
+                    </span>
                   </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </section>
-
-        <Separator className="my-12" />
-
-        {/* Education & ETC */}
-        <section className="grid gap-8 sm:grid-cols-2">
-          <div>
-            <h3 className="mb-4 flex items-center gap-3 text-xl font-semibold sm:text-2xl">
-              <GraduationCap className="h-5 w-5 text-primary" /> Education
-            </h3>
-            <Card className="transition-all hover:shadow-md hover:shadow-primary/5">
-              <CardContent className="py-5">
-                <p className="font-semibold text-base">서일대학교</p>
-                <p className="mt-1 text-sm text-muted-foreground">
-                  컴퓨터공학 학사 졸업
-                </p>
-              </CardContent>
-            </Card>
-          </div>
-
-          <div>
-            <h3 className="mb-4 flex items-center gap-3 text-xl font-semibold sm:text-2xl">
-              <Award className="h-5 w-5 text-primary" /> ETC
-            </h3>
-            <Card className="transition-all hover:shadow-md hover:shadow-primary/5">
-              <CardContent className="space-y-3 py-5">
-                <div className="flex items-center justify-between">
-                  <p className="text-sm font-medium">육군 병장 만기 전역</p>
-                  <Badge variant="outline" className="text-xs font-medium">
-                    2011.06 - 2013.03
-                  </Badge>
+                  <p className="pl-6 text-sm text-foreground/80 leading-relaxed">
+                    {study.sections[key]}
+                  </p>
                 </div>
-                <div className="flex items-center justify-between">
-                  <p className="text-sm font-medium">정보처리산업기사</p>
-                  <Badge variant="outline" className="text-xs font-medium">
-                    2017.05.26
-                  </Badge>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </section>
-
-        {/* Footer */}
-        <footer className="mt-20 pt-8 text-center text-sm text-muted-foreground border-t border-border">
-          <p>© 2026 JeongSu Kim. All rights reserved.</p>
-        </footer>
+              ))}
+            </div>
+          </CardContent>
+        </div>
       </div>
+    </Card>
+  );
+}
+
+function CaseStudyContent() {
+  return (
+    <section>
+      <p className="mb-8 text-sm text-muted-foreground leading-relaxed">
+        이력서에서 &quot;무엇을 했는가&quot;를 보여준다면, 여기서는 &quot;왜, 어떻게 했는가&quot;를 보여줍니다.
+        <br />
+        각 케이스를 클릭하면 상세 내용을 확인할 수 있습니다.
+      </p>
+      <div className="space-y-4">
+        {caseStudies.map((study) => (
+          <CaseStudyCard key={study.title} study={study} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// ─── Sidebar ─────────────────────────────────────────────────
+
+function Sidebar({
+  activeTab,
+  onTabChange,
+}: {
+  activeTab: Tab;
+  onTabChange: (tab: Tab) => void;
+}) {
+  return (
+    <div className="flex h-full flex-col px-5 py-6">
+      {/* Profile */}
+      <div>
+        <div className="flex items-center gap-3">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
+            JS
+          </div>
+          <h1 className="text-lg font-bold text-foreground">
+            JeongSu Kim
+          </h1>
+        </div>
+        <p className="mt-3 text-sm text-muted-foreground">Product Engineer</p>
+        <p className="mt-1 text-xs text-muted-foreground/70">AI와 함께 제품을 만드는</p>
+        <p className="mt-2 text-xs text-muted-foreground/50">
+          Last Updated. 2026/03/02
+        </p>
+      </div>
+
+      <Separator className="my-5" />
+
+      {/* Navigation */}
+      <nav className="space-y-1">
+        <button
+          onClick={() => onTabChange("resume")}
+          className={`flex w-full items-center gap-2 rounded-lg px-3 py-2.5 text-sm transition-colors ${
+            activeTab === "resume"
+              ? "bg-sidebar-accent text-sidebar-accent-foreground font-medium"
+              : "text-muted-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+          }`}
+        >
+          <Briefcase className="h-4 w-4" />
+          이력서
+        </button>
+        <button
+          onClick={() => onTabChange("case-study")}
+          className={`flex w-full items-center gap-2 rounded-lg px-3 py-2.5 text-sm transition-colors ${
+            activeTab === "case-study"
+              ? "bg-sidebar-accent text-sidebar-accent-foreground font-medium"
+              : "text-muted-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+          }`}
+        >
+          <BookOpen className="h-4 w-4" />
+          케이스 스터디
+        </button>
+      </nav>
+
+      <Separator className="my-5" />
+
+      {/* Core Skills */}
+      <div>
+        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+          Core Skills
+        </p>
+        <div className="mt-3 flex flex-wrap gap-2">
+          <Badge variant="secondary">TypeScript</Badge>
+          <Badge variant="secondary">Next.js</Badge>
+          <Badge variant="secondary">React</Badge>
+          <Badge variant="secondary">Claude Code</Badge>
+        </div>
+      </div>
+
+      {/* Spacer */}
+      <div className="flex-1" />
+
+      <Separator className="mb-4" />
+
+      {/* Contact */}
+      <div className="pb-2 space-y-1">
+        <a
+          href="tel:010-8743-9512"
+          className="flex items-center gap-2 rounded-lg px-2 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-sidebar-accent hover:text-foreground"
+        >
+          <Phone className="h-4 w-4" />
+          010-8743-9512
+        </a>
+        <a
+          href="mailto:ssukim0930@gmail.com"
+          className="flex items-center gap-2 rounded-lg px-2 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-sidebar-accent hover:text-foreground"
+        >
+          <Mail className="h-4 w-4" />
+          ssukim0930@gmail.com
+        </a>
+      </div>
+    </div>
+  );
+}
+
+// ─── Main Page ───────────────────────────────────────────────
+
+export default function Home() {
+  const [activeTab, setActiveTab] = useState<Tab>("resume");
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const mainRef = useRef<HTMLElement>(null);
+
+  const handleTabChange = useCallback((tab: Tab) => {
+    setActiveTab(tab);
+    setSidebarOpen(false);
+    // Scroll main content to top
+    if (mainRef.current) {
+      mainRef.current.scrollTop = 0;
+    }
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-background">
+      {/* Mobile Top Bar */}
+      <div className="sticky top-0 z-50 flex h-14 items-center gap-3 border-b border-border bg-sidebar px-4 lg:hidden">
+        <button
+          onClick={() => setSidebarOpen((prev) => !prev)}
+          className="rounded-md p-2 hover:bg-sidebar-accent"
+        >
+          {sidebarOpen ? (
+            <X className="h-5 w-5" />
+          ) : (
+            <Menu className="h-5 w-5" />
+          )}
+        </button>
+        <span className="text-lg font-semibold text-foreground">
+          JeongSu Kim
+        </span>
+      </div>
+
+      {/* Mobile Overlay */}
+      <div
+        className={`fixed inset-0 z-40 bg-black/50 transition-opacity duration-300 lg:hidden ${
+          sidebarOpen
+            ? "opacity-100 pointer-events-auto"
+            : "opacity-0 pointer-events-none"
+        }`}
+        onClick={() => setSidebarOpen(false)}
+      />
+
+      {/* Sidebar */}
+      <aside
+        className={`fixed top-0 left-0 z-40 h-screen w-72 border-r border-sidebar-border bg-sidebar transition-transform duration-300 ease-in-out lg:translate-x-0 ${
+          sidebarOpen ? "translate-x-0" : "-translate-x-full"
+        } lg:z-auto`}
+      >
+        {/* On mobile, offset for top bar */}
+        <div className="h-full pt-14 lg:pt-0">
+          <Sidebar activeTab={activeTab} onTabChange={handleTabChange} />
+        </div>
+      </aside>
+
+      {/* Main Content */}
+      <main
+        ref={mainRef}
+        className="lg:ml-72 lg:h-screen lg:overflow-y-auto"
+      >
+        <div className="mx-auto max-w-4xl px-4 py-8 lg:px-8 lg:py-12">
+          {/* Tab Content */}
+          <div key={activeTab} className="animate-fade-in">
+            {activeTab === "resume" ? <ResumeContent /> : <CaseStudyContent />}
+          </div>
+
+          {/* Footer */}
+          <footer className="mt-20 pt-8 text-center text-sm text-muted-foreground border-t border-border">
+            <p>&copy; 2026 JeongSu Kim. All rights reserved.</p>
+          </footer>
+        </div>
+      </main>
     </div>
   );
 }
