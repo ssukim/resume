@@ -32,9 +32,9 @@ export default function ClaudeMdAiOnboarding() {
         일해&quot;라고 알려주는 겁니다.
       </p>
 
-      <h2>실제 구조: conma-hub의 CLAUDE.md</h2>
+      <h2>실제 구조: 팀 프로젝트의 CLAUDE.md</h2>
       <p>
-        저희 팀의 문서 허브인 <strong>conma-hub</strong>에서 사용 중인
+        저희 팀의 문서 허브에서 사용 중인
         CLAUDE.md의 핵심 구성을 소개합니다.
       </p>
 
@@ -43,7 +43,7 @@ export default function ClaudeMdAiOnboarding() {
         Claude가 프로젝트의 전체 지도를 이해하도록 폴더 구조를 명시합니다.
       </p>
       <pre>
-        <code>{`conma-hub/
+        <code>{`project-hub/
 ├── projects/                # 진행 중인 프로젝트
 │   └── {project-name}/
 │       ├── spec.md          # 피처 개요 + 현재 단계
