@@ -14,6 +14,7 @@ history/
 
 | 프로젝트 | 설명 | 완료일 |
 |----------|------|--------|
+| [case-study-mdx](./projects/case-study-mdx/spec.md) | 케이스 스터디 → TSX 블로그 전환 | 2026-03-02 |
 | [design-polish](./projects/design-polish/spec.md) | 디자인 폴리싱 (액센트 컬러, 프로필, 계층, 타이포, 모션) | 2026-03-02 |
 | [layout-renewal](./projects/layout-renewal/spec.md) | 사이드바 레이아웃 리뉴얼 | 2026-03-02 |
 

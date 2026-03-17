@@ -4,108 +4,40 @@
       <stop offset="0%" stop-color="#0f172a"/>
       <stop offset="100%" stop-color="#1e293b"/>
     </linearGradient>
-    <linearGradient id="glow" x1="600" y1="150" x2="600" y2="500" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#6366f1" stop-opacity="0.12"/>
-      <stop offset="100%" stop-color="#6366f1" stop-opacity="0"/>
+    <linearGradient id="accent" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
     </linearGradient>
   </defs>
 
   <rect width="1200" height="630" fill="url(#bg)"/>
 
-  <!-- Grid -->
-  <g opacity="0.04" stroke="#fff" stroke-width="1">
-    <line x1="60" y1="0" x2="60" y2="630"/><line x1="120" y1="0" x2="120" y2="630"/>
-    <line x1="180" y1="0" x2="180" y2="630"/><line x1="240" y1="0" x2="240" y2="630"/>
-    <line x1="300" y1="0" x2="300" y2="630"/><line x1="360" y1="0" x2="360" y2="630"/>
-    <line x1="420" y1="0" x2="420" y2="630"/><line x1="480" y1="0" x2="480" y2="630"/>
-    <line x1="540" y1="0" x2="540" y2="630"/><line x1="600" y1="0" x2="600" y2="630"/>
-    <line x1="660" y1="0" x2="660" y2="630"/><line x1="720" y1="0" x2="720" y2="630"/>
-    <line x1="780" y1="0" x2="780" y2="630"/><line x1="840" y1="0" x2="840" y2="630"/>
-    <line x1="900" y1="0" x2="900" y2="630"/><line x1="960" y1="0" x2="960" y2="630"/>
-    <line x1="1020" y1="0" x2="1020" y2="630"/><line x1="1080" y1="0" x2="1080" y2="630"/>
-    <line x1="1140" y1="0" x2="1140" y2="630"/>
-    <line x1="0" y1="60" x2="1200" y2="60"/><line x1="0" y1="120" x2="1200" y2="120"/>
-    <line x1="0" y1="180" x2="1200" y2="180"/><line x1="0" y1="240" x2="1200" y2="240"/>
-    <line x1="0" y1="300" x2="1200" y2="300"/><line x1="0" y1="360" x2="1200" y2="360"/>
-    <line x1="0" y1="420" x2="1200" y2="420"/><line x1="0" y1="480" x2="1200" y2="480"/>
-    <line x1="0" y1="540" x2="1200" y2="540"/>
-  </g>
+  <!-- Subtle glow -->
+  <circle cx="600" cy="315" r="300" fill="#6366f1" opacity="0.06"/>
+  <circle cx="600" cy="315" r="180" fill="#6366f1" opacity="0.04"/>
 
-  <ellipse cx="600" cy="315" rx="420" ry="260" fill="url(#glow)"/>
-
-  <!-- File icon: CLAUDE.md -->
-  <rect x="220" y="120" width="320" height="400" rx="8" fill="#161b22" stroke="#30363d" stroke-width="1.5"/>
-  <!-- File tab -->
-  <rect x="220" y="120" width="320" height="44" rx="8" fill="#1c2128"/>
-  <rect x="220" y="152" width="320" height="12" fill="#1c2128"/>
   <!-- File icon -->
-  <rect x="240" y="133" width="14" height="18" rx="2" fill="#6366f1" opacity="0.8"/>
-  <text x="268" y="148" fill="#c9d1d9" font-family="monospace" font-size="13" font-weight="600">CLAUDE.md</text>
-
-  <!-- Markdown content -->
-  <g font-family="monospace" font-size="13">
-    <text x="244" y="192" fill="#6366f1" font-weight="700"># Claude Code 프로젝트 규칙</text>
-
-    <text x="244" y="220" fill="#8b949e">팀원과 AI가 함께 일하는 공간</text>
-
-    <text x="244" y="256" fill="#d2a8ff" font-weight="700">## 명령어</text>
-
-    <text x="244" y="284" fill="#7ee787">### &quot;피처 생성해줘&quot;</text>
-    <text x="244" y="306" fill="#8b949e">→ 폴더 + 문서 10개 자동 생성</text>
-
-    <text x="244" y="338" fill="#7ee787">### &quot;개발자료 최신화 해줘&quot;</text>
-    <text x="244" y="360" fill="#8b949e">→ Git 커밋 → 문서 자동 동기화</text>
-
-    <text x="244" y="392" fill="#7ee787">### &quot;QA 해줘&quot;</text>
-    <text x="244" y="414" fill="#8b949e">→ 체크리스트 자동 실행 + 스크린샷</text>
-
-    <text x="244" y="446" fill="#7ee787">### &quot;핸드오프 만들어줘&quot;</text>
-    <text x="244" y="468" fill="#8b949e">→ Figma → 디자인 스펙 자동 생성</text>
-
-    <text x="244" y="500" fill="#d2a8ff" font-weight="700">## 네이밍 규칙</text>
+  <g transform="translate(530, 140)">
+    <rect x="0" y="0" width="140" height="170" rx="12" fill="#1e293b" stroke="#6366f1" stroke-width="2.5"/>
+    <rect x="0" y="0" width="140" height="40" rx="12" fill="#6366f1" opacity="0.15"/>
+    <rect x="0" y="28" width="140" height="12" fill="#6366f1" opacity="0.15"/>
+    <text x="70" y="27" text-anchor="middle" fill="#a5b4fc" font-family="monospace" font-size="14" font-weight="600">.md</text>
+    <!-- Lines -->
+    <rect x="20" y="56" width="80" height="6" rx="3" fill="#6366f1" opacity="0.4"/>
+    <rect x="20" y="74" width="100" height="6" rx="3" fill="#475569" opacity="0.4"/>
+    <rect x="20" y="92" width="60" height="6" rx="3" fill="#475569" opacity="0.4"/>
+    <rect x="20" y="116" width="90" height="6" rx="3" fill="#6366f1" opacity="0.3"/>
+    <rect x="20" y="134" width="70" height="6" rx="3" fill="#475569" opacity="0.4"/>
+    <rect x="20" y="152" width="50" height="6" rx="3" fill="#475569" opacity="0.4"/>
   </g>
 
-  <!-- Right side: Process flow -->
-  <g transform="translate(620, 140)">
-    <!-- Flow boxes -->
-    <rect x="0" y="0" width="200" height="48" rx="8" fill="#1c2128" stroke="#6366f1" stroke-width="1.5" opacity="0.9"/>
-    <text x="100" y="29" text-anchor="middle" fill="#c9d1d9" font-family="system-ui, sans-serif" font-size="14" font-weight="600">기획 plan/</text>
+  <!-- Title -->
+  <text x="600" y="390" text-anchor="middle" fill="#f8fafc" font-family="system-ui, -apple-system, sans-serif" font-size="36" font-weight="800" letter-spacing="-0.02em">CLAUDE.md 하나로</text>
+  <text x="600" y="440" text-anchor="middle" fill="#f8fafc" font-family="system-ui, -apple-system, sans-serif" font-size="36" font-weight="800" letter-spacing="-0.02em">AI를 팀원으로 만든 방법</text>
 
-    <!-- Arrow -->
-    <line x1="100" y1="48" x2="100" y2="72" stroke="#6366f1" stroke-width="2" opacity="0.5"/>
-    <polygon points="94,68 100,78 106,68" fill="#6366f1" opacity="0.5"/>
+  <!-- Subtitle -->
+  <text x="600" y="490" text-anchor="middle" fill="#94a3b8" font-family="system-ui, -apple-system, sans-serif" font-size="18">Claude Code + 문서 자동화</text>
 
-    <rect x="0" y="78" width="200" height="48" rx="8" fill="#1c2128" stroke="#8b5cf6" stroke-width="1.5" opacity="0.9"/>
-    <text x="100" y="107" text-anchor="middle" fill="#c9d1d9" font-family="system-ui, sans-serif" font-size="14" font-weight="600">디자인 design/</text>
-
-    <line x1="100" y1="126" x2="100" y2="150" stroke="#8b5cf6" stroke-width="2" opacity="0.5"/>
-    <polygon points="94,146 100,156 106,146" fill="#8b5cf6" opacity="0.5"/>
-
-    <rect x="0" y="156" width="200" height="48" rx="8" fill="#1c2128" stroke="#a78bfa" stroke-width="1.5" opacity="0.9"/>
-    <text x="100" y="185" text-anchor="middle" fill="#c9d1d9" font-family="system-ui, sans-serif" font-size="14" font-weight="600">개발 dev/</text>
-
-    <line x1="100" y1="204" x2="100" y2="228" stroke="#a78bfa" stroke-width="2" opacity="0.5"/>
-    <polygon points="94,224 100,234 106,224" fill="#a78bfa" opacity="0.5"/>
-
-    <rect x="0" y="234" width="200" height="48" rx="8" fill="#1c2128" stroke="#c4b5fd" stroke-width="1.5" opacity="0.9"/>
-    <text x="100" y="263" text-anchor="middle" fill="#c9d1d9" font-family="system-ui, sans-serif" font-size="14" font-weight="600">QA qa/</text>
-
-    <line x1="100" y1="282" x2="100" y2="306" stroke="#c4b5fd" stroke-width="2" opacity="0.5"/>
-    <polygon points="94,302 100,312 106,302" fill="#c4b5fd" opacity="0.5"/>
-
-    <rect x="0" y="312" width="200" height="48" rx="8" fill="#6366f1" opacity="0.9"/>
-    <text x="100" y="341" text-anchor="middle" fill="#fff" font-family="system-ui, sans-serif" font-size="14" font-weight="700">배포 ✓</text>
-  </g>
-
-  <!-- Label: AI teammate -->
-  <rect x="880" y="180" width="240" height="40" rx="20" fill="#6366f1" opacity="0.15" stroke="#6366f1" stroke-width="1"/>
-  <text x="1000" y="205" text-anchor="middle" fill="#a5b4fc" font-family="system-ui, sans-serif" font-size="14" font-weight="600">AI 팀원 온보딩 문서</text>
-
-  <!-- Label: One command -->
-  <rect x="880" y="400" width="240" height="40" rx="20" fill="#8b5cf6" opacity="0.15" stroke="#8b5cf6" stroke-width="1"/>
-  <text x="1000" y="425" text-anchor="middle" fill="#c4b5fd" font-family="system-ui, sans-serif" font-size="14" font-weight="600">명령어 하나로 자동 실행</text>
-
-  <!-- Decorative -->
-  <circle cx="80" cy="540" r="50" fill="#6366f1" opacity="0.04"/>
-  <circle cx="1140" cy="80" r="70" fill="#8b5cf6" opacity="0.04"/>
+  <!-- Bottom accent line -->
+  <rect x="480" y="520" width="240" height="3" rx="1.5" fill="url(#accent)" opacity="0.6"/>
 </svg>

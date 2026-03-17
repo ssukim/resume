@@ -43,7 +43,7 @@ export default async function BlogListPage({
       </Suspense>
 
       {/* Post List */}
-      <div className="mt-8 space-y-6">
+      <div className="mt-8 space-y-4">
         {filteredPosts.length === 0 ? (
           <p className="py-16 text-center text-sm text-muted-foreground">
             해당 태그의 포스트가 없습니다.
@@ -53,47 +53,49 @@ export default async function BlogListPage({
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="group block overflow-hidden rounded-xl border border-border transition-all hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5"
+              className="group flex gap-4 overflow-hidden rounded-xl border border-border p-4 transition-all hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5"
             >
               {/* Thumbnail */}
-              <div className="relative aspect-[1200/630] w-full overflow-hidden bg-muted">
+              <div className="relative hidden h-28 w-44 shrink-0 overflow-hidden rounded-lg bg-muted sm:block">
                 <Image
                   src={post.thumbnail}
                   alt={post.title}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                  sizes="(max-width: 768px) 100vw, 800px"
+                  sizes="176px"
                   priority
                 />
               </div>
 
               {/* Content */}
-              <div className="p-5 sm:p-6">
-                {/* Tag */}
-                <div className="flex items-center gap-2">
-                  {post.tags.map((t) => (
-                    <Badge
-                      key={t}
-                      variant="outline"
-                      className="text-[11px] font-medium text-primary border-primary/30"
-                    >
-                      {t}
-                    </Badge>
-                  ))}
+              <div className="flex min-w-0 flex-1 flex-col justify-between">
+                <div>
+                  {/* Tag */}
+                  <div className="flex items-center gap-2">
+                    {post.tags.map((t) => (
+                      <Badge
+                        key={t}
+                        variant="outline"
+                        className="text-[11px] font-medium text-primary border-primary/30"
+                      >
+                        {t}
+                      </Badge>
+                    ))}
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="mt-1.5 text-base font-semibold tracking-tight group-hover:text-primary transition-colors line-clamp-1">
+                    {post.title}
+                  </h3>
+
+                  {/* Subtitle */}
+                  <p className="mt-1 text-sm text-muted-foreground leading-relaxed line-clamp-1">
+                    {post.subtitle}
+                  </p>
                 </div>
 
-                {/* Title */}
-                <h3 className="mt-3 text-lg font-semibold tracking-tight group-hover:text-primary transition-colors sm:text-xl">
-                  {post.title}
-                </h3>
-
-                {/* Subtitle */}
-                <p className="mt-2 text-sm text-muted-foreground leading-relaxed line-clamp-2">
-                  {post.subtitle}
-                </p>
-
-                {/* Meta + Read more */}
-                <div className="mt-4 flex items-center justify-between">
+                {/* Meta */}
+                <div className="mt-2 flex items-center justify-between">
                   <div className="flex items-center gap-3 text-xs text-muted-foreground/60">
                     <span className="inline-flex items-center gap-1">
                       <Calendar className="h-3 w-3" />

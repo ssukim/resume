@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Subtle glow -->
+  <circle cx="600" cy="260" r="260" fill="#8b5cf6" opacity="0.06"/>
+  <circle cx="600" cy="260" r="140" fill="#3b82f6" opacity="0.04"/>
+
+  <!-- Domain migration visual: old domain → arrow → new domain -->
+  <g transform="translate(600, 180)" text-anchor="middle">
+    <!-- Old domain box -->
+    <rect x="-280" y="-30" width="220" height="48" rx="8" fill="#334155" opacity="0.6"/>
+    <text x="-170" y="-1" fill="#94a3b8" font-family="ui-monospace, monospace" font-size="14" font-weight="500">social.digitalog.ai</text>
+
+    <!-- Arrow -->
+    <rect x="-30" y="-4" width="60" height="8" rx="4" fill="#8b5cf6" opacity="0.5"/>
+    <polygon points="35,-12 55,0 35,12" fill="#8b5cf6" opacity="0.5"/>
+
+    <!-- New domain box -->
+    <rect x="60" y="-30" width="220" height="48" rx="8" fill="#3b82f6" opacity="0.2" stroke="#3b82f6" stroke-width="1.5" stroke-opacity="0.4"/>
+    <text x="170" y="-1" fill="#f8fafc" font-family="ui-monospace, monospace" font-size="16" font-weight="600">conma.ai</text>
+  </g>
+
+  <!-- Infrastructure icons row -->
+  <g transform="translate(600, 270)" text-anchor="middle">
+    <text x="-240" y="0" fill="#64748b" font-family="system-ui, sans-serif" font-size="12" font-weight="500">EKS</text>
+    <text x="-140" y="0" fill="#64748b" font-family="system-ui, sans-serif" font-size="12" font-weight="500">Istio</text>
+    <text x="-40" y="0" fill="#64748b" font-family="system-ui, sans-serif" font-size="12" font-weight="500">ALB</text>
+    <text x="60" y="0" fill="#64748b" font-family="system-ui, sans-serif" font-size="12" font-weight="500">Route53</text>
+    <text x="170" y="0" fill="#64748b" font-family="system-ui, sans-serif" font-size="12" font-weight="500">ACM</text>
+    <text x="260" y="0" fill="#64748b" font-family="system-ui, sans-serif" font-size="12" font-weight="500">OAuth</text>
+    <!-- Connecting dots -->
+    <circle cx="-190" cy="-2" r="2" fill="#475569"/>
+    <circle cx="-90" cy="-2" r="2" fill="#475569"/>
+    <circle cx="10" cy="-2" r="2" fill="#475569"/>
+    <circle cx="115" cy="-2" r="2" fill="#475569"/>
+    <circle cx="215" cy="-2" r="2" fill="#475569"/>
+  </g>
+
+  <!-- Title -->
+  <text x="600" y="370" text-anchor="middle" fill="#f8fafc" font-family="system-ui, -apple-system, sans-serif" font-size="34" font-weight="800" letter-spacing="-0.02em">프론트엔드 개발자가 Claude와</text>
+  <text x="600" y="420" text-anchor="middle" fill="#f8fafc" font-family="system-ui, -apple-system, sans-serif" font-size="34" font-weight="800" letter-spacing="-0.02em">도메인 마이그레이션한 이야기</text>
+
+  <!-- Subtitle -->
+  <text x="600" y="475" text-anchor="middle" fill="#94a3b8" font-family="system-ui, -apple-system, sans-serif" font-size="18">AWS EKS + Istio 무중단 도메인 전환</text>
+
+  <!-- Bottom accent line -->
+  <rect x="480" y="510" width="240" height="3" rx="1.5" fill="url(#accent)" opacity="0.6"/>
+</svg>

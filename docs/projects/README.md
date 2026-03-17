@@ -31,9 +31,7 @@ projects/{project-name}/
 
 ## 완료된 프로젝트
 
-| 상태 | 프로젝트 | 설명 |
-|------|----------|------|
-| ✅ | [case-study-mdx](./case-study-mdx/spec.md) | 케이스 스터디 → TSX 블로그 전환 |
+완료된 프로젝트는 [history](../history/README.md)를 참조하세요.
 
 ## 네이밍 규칙
 

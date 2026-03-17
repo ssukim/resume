@@ -3,12 +3,11 @@
 import { useState, useCallback } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import {
   Briefcase,
   PenLine,
-  Phone,
+
   Mail,
   Menu,
   X,
@@ -23,19 +22,10 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
     <div className="flex h-full flex-col px-5 py-6">
       {/* Profile */}
       <div>
-        <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-sm font-bold text-primary-foreground">
-            JS
-          </div>
-          <h1 className="text-lg font-bold text-foreground">
-            JeongSu Kim
-          </h1>
-        </div>
-        <p className="mt-3 text-sm text-muted-foreground">Product Engineer</p>
-        <p className="mt-1 text-xs text-muted-foreground/70">AI와 함께 제품을 만드는</p>
-        <p className="mt-2 text-xs text-muted-foreground/50">
-          Last Updated. 2026/03/02
-        </p>
+        <h1 className="text-lg font-bold text-foreground">
+          JeongSu Kim
+        </h1>
+        <p className="mt-1 text-sm text-muted-foreground">Product Engineer</p>
       </div>
 
       <Separator className="my-5" />
@@ -52,7 +42,7 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
           }`}
         >
           <Briefcase className="h-4 w-4" />
-          이력서
+          About
         </Link>
         <Link
           href="/blog"
@@ -64,24 +54,10 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
           }`}
         >
           <PenLine className="h-4 w-4" />
-          블로그
+          Blog
         </Link>
       </nav>
 
-      <Separator className="my-5" />
-
-      {/* Core Skills */}
-      <div>
-        <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wide">
-          Core Skills
-        </p>
-        <div className="mt-3 flex flex-wrap gap-2">
-          <Badge variant="secondary">TypeScript</Badge>
-          <Badge variant="secondary">Next.js</Badge>
-          <Badge variant="secondary">React</Badge>
-          <Badge variant="secondary">Claude Code</Badge>
-        </div>
-      </div>
 
       {/* Spacer */}
       <div className="flex-1" />
@@ -90,13 +66,6 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
 
       {/* Contact */}
       <div className="pb-2 space-y-1">
-        <a
-          href="tel:010-8743-9512"
-          className="flex items-center gap-2 rounded-lg px-2 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-sidebar-accent hover:text-foreground"
-        >
-          <Phone className="h-4 w-4" />
-          010-8743-9512
-        </a>
         <a
           href="mailto:ssukim0930@gmail.com"
           className="flex items-center gap-2 rounded-lg px-2 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-sidebar-accent hover:text-foreground"

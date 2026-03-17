@@ -5,7 +5,7 @@ JeongSu Kim의 개인 이력서 + 블로그 사이트.
 ## 기술 스택
 
 - **프레임워크**: Next.js 16 (App Router)
-- **언어**: TypeScript
+- **언어**: TypeScript, React 19
 - **스타일링**: Tailwind CSS v4 + shadcn/ui (Radix UI)
 - **배포**: Vercel (`ssukim-resume.vercel.app`)
 
@@ -18,7 +18,9 @@ src/
 │   └── blog/             # 블로그
 │       ├── page.tsx      # 목록
 │       └── [slug]/       # 상세
-├── components/ui/        # shadcn/ui 컴포넌트
+├── components/
+│   ├── ui/               # shadcn/ui 컴포넌트
+│   └── layout/           # 레이아웃 컴포넌트
 ├── content/blog/         # 블로그 포스트 (TSX 컴포넌트)
 ├── data/                 # 정적 데이터 (blog.ts 등)
 └── lib/                  # 유틸리티
@@ -29,9 +31,9 @@ public/images/            # 정적 이미지
 ## 개발 명령어
 
 ```bash
-npm run dev    # 로컬 개발 서버 (http://localhost:3000)
-npm run build  # 프로덕션 빌드
-npm run lint   # ESLint 실행
+pnpm dev      # 로컬 개발 서버 (http://localhost:3000)
+pnpm build    # 프로덕션 빌드
+pnpm lint     # ESLint 실행
 ```
 
 ## 블로그 포스트 추가 방법

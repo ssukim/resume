@@ -1,6 +1,6 @@
 # JeongSu Kim — 개인 사이트 문서
 
-> 이력서 + 기술 블로그 + 생각 정리 — 문서 허브
+> 이력서 + 기술 블로그 — 문서 허브
 
 ## 폴더 구조
 
@@ -63,17 +63,16 @@ Spec → Plan → Design → Dev → History
 
 - **Framework**: Next.js 16, React 19, TypeScript
 - **Styling**: Tailwind 4, shadcn/ui
-- **Content**: MDX (블로그 & 생각 정리)
+- **Content**: TSX 컴포넌트 방식 블로그
 - **Icons**: Lucide React
-- **Deploy**: Vercel (예정)
+- **Deploy**: Vercel (`ssukim-resume.vercel.app`)
 
 ## 사이트 구성
 
 | 섹션 | 설명 |
 |------|------|
-| **이력서** | 경력, 프로젝트, 스킬, 케이스 스터디 |
-| **기술 블로그** | 개발 경험, 기술 아티클 (MDX) |
-| **생각 정리** | 에세이, 회고, 아이디어 노트 (MDX) |
+| **이력서** | 경력, 프로젝트, 스킬 |
+| **기술 블로그** | 개발 경험, 기술 아티클 (TSX) |
 
 ## 관련 링크
 

@@ -16,7 +16,7 @@ import {
 const careers = [
   {
     company: "디지털로그",
-    url: "https://social.digitalog.ai",
+    url: "https://conma.ai",
     role: "Product Engineer",
     period: "2024.08 - 현재",
   },
@@ -53,7 +53,7 @@ const projects = [
     items: [
       {
         name: "Conma",
-        url: "https://social.digitalog.ai/",
+        url: "https://conma.ai/",
         description: "인스타그램 댓글·DM 자동화·리포트 통합 관리 웹",
         tech: ["Next.js 16", "React 19", "TypeScript", "Zustand", "SWR", "TailwindCSS", "Shadcn UI", "AWS EKS", "Docker", "GitHub Actions"],
         subProjects: [
@@ -63,17 +63,14 @@ const projects = [
             problem: "인플루언서, 브랜드, 마케팅 대행사가 Instagram 캠페인을 운영하는 과정에서 댓글 관리, DM 응대, 성과 확인 등이 수작업 중심으로 이루어져 반복 업무와 운영 비효율이 누적되는 문제",
             role: "Claude Code 기반 AI 개발 워크플로를 구축하고, 기획부터 프론트엔드 설계·인프라까지 제품 전반을 리드",
             contributions: [
-              "Claude Code를 활용한 AI 기반 개발 환경 구축 — 기획서 분석, 코드 구현, Playwright MCP 연동 QA 자동화",
-              "댓글 키워드 기반 DM 자동 응대 — 3-Step 자동화 플로우 설계, Zustand 멀티스텝 폼, Optimistic Update, LIVE 충돌 감지 UX 구현",
-              "Instagram OAuth 계정 연동, 댓글 관리(검색·필터·CSV 내보내기·벌크 액션), 블로그 플랫폼(TipTap 에디터) 등 핵심 기능 설계·구현",
-              "다국어(i18n) 지원, K8s 기반 개발·운영 환경 분리, 모니터링(Prometheus+Grafana+Loki) 구축",
-              "SEO & AI 검색 최적화 — ISR 전환, 시맨틱 HTML 개선, AI 봇(GPTBot, ClaudeBot) 허용으로 AI 검색 노출 확보",
+              "Claude Code 기반 AI 개발 생태계 구축 — CLAUDE.md 계층, 커스텀 커맨드·Agent·Rules·Skills 설계로 팀원 누구나 기획→개발→QA를 AI와 함께 수행할 수 있는 워크플로 구축",
+              "DM 자동 응대, 댓글 관리, 인사이트 대시보드, 이벤트 추첨, 4개 국어 i18n 등 핵심 기능 설계·구현",
+              "블로그 플랫폼 구축(TipTap + Supabase, ISR) — JSON-LD·AI 봇 허용 등 SEO 최적화로 AI 검색엔진 노출 확보",
+              "AWS EKS 개발·운영 환경 분리, 모니터링(Prometheus+Grafana+Loki), 도메인 무중단 마이그레이션",
             ],
             achievements: [
-              "DM 자동 응대 도입으로 마케터 댓글 응대 시간 하루 2시간 → 초기 설정 5분으로 단축",
-              "댓글 벌크 액션 도입으로 100건 기준 관리 시간 30분 → 1분 이내로 단축",
-              "AI 개발 워크플로 도입 후 MVP 이후 3개 핵심 피처 연속 출시, 누적 가입 유저 250명 확보",
-              "AI 검색엔진(ChatGPT, Perplexity) 노출 달성",
+              "플랫폼 출시 후 누적 가입 유저 650명 확보",
+              "Claude Code 생태계를 팀 공용 워크플로로 정착, 제품 개발·출시 속도 향상",
             ],
           },
         ],
@@ -626,18 +623,9 @@ function ResumeContent() {
         </h3>
         <div className="space-y-4 text-foreground/80 leading-relaxed sm:text-base">
           <p className="pl-1">
-            유저 인터뷰에서 마케터가 댓글 응대에 하루 평균 2시간 이상을
-            소모한다는 문제를 발견하고, 댓글 키워드 기반 DM 자동 응대 기능을
-            기획·설계·구현해 수동 응대를 완전 자동화한 프로덕트 엔지니어입니다.
-          </p>
-          <p className="pl-1">
-            Claude Code를 개발 파트너로 활용해 기획서 분석, 코드 구현, QA
-            자동화까지 AI 기반 개발 워크플로를 구축하고, 이를 통해 빠른
-            피처 사이클을 유지하며 제품을 만들고 있습니다.
-          </p>
-          <p className="pl-1">
-            AI 검색엔진(ChatGPT, Perplexity) 최적화, AI 봇 크롤링 허용
-            설정 등 AI 시대에 맞는 제품 노출 전략까지 설계하고 구현합니다.
+            유저가 해결하고자 하는 문제를 파악하고, 그 문제를 풀어 프로덕트로
+            만들어가는 데 집중하는 엔지니어입니다. Claude Code 기반 AI
+            워크플로로 이 사이클을 빠르게 반복합니다.
           </p>
         </div>
       </section>
