@@ -16,6 +16,7 @@ description: "Resume 사이트 명령어 허브 - 할 일을 선택하세요"
 
 ## 동기화
 3. 이력서 동기화 — Resume 사이트 최신 내용을 외부 플랫폼(원티드/잡코리아/LinkedIn)에 반영 (Playwright MCP)
+3-1. 노션 동기화 — Resume 사이트 최신 내용을 Notion 이력서 페이지에 반영 (Notion API)
 
 ## 점검
 4. 이력서 점검 — 이력서 내용이 최신 상태인지 검증
@@ -29,6 +30,11 @@ description: "Resume 사이트 명령어 허브 - 할 일을 선택하세요"
   - 2-1(자유 주제): 사용자에게 주제를 질문 후 `src/content/blog/{slug}.tsx` 파일과 `src/data/blog.ts` 메타데이터 추가
   - 2-2(프로젝트 기반): `/Users/admin/Documents/digitalog/conma-hub` 프로젝트 문서를 스캔하여 블로그 소재를 추출. 프로젝트 선택 → 앵글 선택 → 초안 생성 → 메타데이터 + 썸네일 생성. ⚠️ 회사 내부 프로젝트명(conma, conma-hub, imp-sns, digitalog)은 블로그에 노출하지 않고 기술적 인사이트에 집중
 - 3번(이력서 동기화): `/sync-resume` 스킬을 실행합니다
+- 3-1번(노션 동기화): 아래 절차로 진행:
+  1. 사용자에게 "노션 페이지 기존 내용 삭제해주세요" 요청
+  2. 사용자가 삭제 완료를 확인하면 `pnpm notion-sync` 실행
+  3. 스크립트는 `page.tsx`에서 이력서 데이터를 자동 추출하여 Notion API로 동기화
+  4. 환경변수는 `.env.local`에 저장됨 (NOTION_TOKEN, NOTION_PAGE_ID)
 - 4번(이력서 점검): `src/app/page.tsx`의 이력서 데이터를 읽고 아래 항목을 검증:
   - **경력 기간** — 현재 재직 중인 회사의 기간이 오늘 날짜 기준으로 맞는지
   - **프로젝트 내용** — 아래 실제 프로젝트 코드베이스와 비교하여 누락된 프로젝트나 outdated 성과가 있는지

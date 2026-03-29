@@ -64,7 +64,7 @@ const projects = [
             role: "Claude Code 기반 AI 개발 워크플로를 구축하고, 기획부터 프론트엔드 설계·인프라까지 제품 전반을 리드",
             contributions: [
               "Claude Code 기반 AI 개발 생태계 구축 — CLAUDE.md 계층, 커스텀 커맨드·Agent·Rules·Skills 설계로 팀원 누구나 기획→개발→QA를 AI와 함께 수행할 수 있는 워크플로 구축",
-              "DM 자동 응대, 댓글 관리, 인사이트 대시보드, 이벤트 추첨, 4개 국어 i18n 등 핵심 기능 설계·구현",
+              "마케터의 반복 업무(DM 응대·댓글 관리·추첨)를 자동화하고, 4개 국어 지원으로 글로벌 사용자 온보딩 기반 마련",
               "블로그 플랫폼 구축(TipTap + Supabase, ISR) — JSON-LD·AI 봇 허용 등 SEO 최적화로 AI 검색엔진 노출 확보",
               "AWS EKS 개발·운영 환경 분리, 모니터링(Prometheus+Grafana+Loki), 도메인 무중단 마이그레이션",
             ],
@@ -79,7 +79,7 @@ const projects = [
         name: "Biz Calendar",
         description: "마케팅 조직의 캠페인, 콘텐츠, 태스크, 일정을 한 워크스페이스에서 통합 관리 웹",
         serviceClosed: true,
-        tech: ["Next.js 15", "React 19", "TypeScript", "Zustand", "SWR", "TailwindCSS", "Shadcn UI", "Toss Payments", "AWS EKS", "Docker", "GitHub Actions"],
+        tech: ["Next.js 15", "React 19", "TypeScript", "Zustand", "SWR", "TailwindCSS", "Shadcn UI", "AWS EKS", "Docker", "GitHub Actions"],
         subProjects: [
           {
             name: "BizCalendar 플랫폼",
@@ -87,9 +87,9 @@ const projects = [
             problem: "마케팅 팀이 개인 엑셀로 캠페인 일정을 관리해 팀 간 일정 충돌과 공유 누락이 반복되는 환경",
             role: "기획 단계부터 참여해 캘린더 뷰 체계 설계, 결제·인증 시스템 구현, GS 인증까지 프론트엔드 전반을 리드",
             contributions: [
-              "Google Calendar·Jira 사용 패턴 분석 기반 7개 캘린더 뷰(연간·월간·주간·타임라인·플래너·분기·리스트) 설계 및 구현",
-              "드래그 앤 드롭 시스템(일정 이동·리사이즈·크로스 뷰 DnD), 멀티 타임존 지원 구현",
-              "Toss Payments 연동 결제 플로우, OAuth 소셜 로그인, GS 인증 테스트 환경 구축",
+              "사용자 워크플로 분석 기반 7개 캘린더 뷰 체계 설계로, 팀 규모·업무 성격에 맞는 일정 관리 경험 제공",
+              "직관적 일정 조작 UX(DnD 이동·리사이즈·크로스 뷰)로 기존 클릭 기반 대비 일정 편집 동선 단축",
+              "결제·인증·GS 인증 등 서비스 상용화에 필요한 전체 인프라 구축",
             ],
             achievements: [
               "BizCalendar MVP를 기반으로 TIPS 투자 유치 성공 (정부 기술창업 프로그램)",
@@ -107,7 +107,7 @@ const projects = [
       {
         name: "Micro Frontend 기반 Admin",
         description: "레거시 Admin 시스템을 Micro Frontend 개념을 적용한 멀티 레포 구조로 재설계하여, 도메인 단위로 독립적인 개발, 배포 가능한 Admin 웹",
-        tech: ["Next.js 14", "TypeScript", "Zustand", "SWR", "Mantine UI", "PostCSS", "pnpm", "SWC"],
+        tech: ["Next.js 14", "TypeScript", "Zustand", "SWR", "Mantine UI"],
         subProjects: [
           {
             name: "Micro Frontends 기반 Admin 플랫폼 구조 전환",
@@ -127,94 +127,53 @@ const projects = [
       {
         name: "입고 Admin",
         description: "고객이 맡긴 세탁물을 입고 단계 Admin 웹",
-        tech: ["Next.js 13", "TypeScript", "Zustand", "SWR", "PostCSS", "pnpm", "SWC"],
+        tech: ["Next.js 13", "TypeScript", "Zustand", "SWR"],
         subProjects: [
           {
             name: "입고 Admin 플랫폼 리뉴얼",
             period: "2023.03 ~ 2023.06",
             problem: "기존 입고 시스템의 복잡한 프로세스로 인해 처리 속도가 느리고 작업자 생산성 개선에 한계가 있는 상황",
-            role: "스쿼드 프론트엔드 개발자로 입고 Admin 리뉴얼을 담당",
+            role: "스쿼드 프론트엔드 개발자로 입고 Admin 전면 리뉴얼을 담당",
             contributions: [
-              "기존 입고 프로세스를 신규 Admin 플랫폼으로 전면 리뉴얼",
-              "2023.07.17 기준 전체 입고 프로세스 신규 플랫폼 전환 적용",
+              "기존 입고 프로세스를 신규 Admin 플랫폼으로 전면 리뉴얼, 전체 입고 프로세스 전환 적용",
               "신규 플랫폼 기반으로 PO와 협업하며 기능 고도화",
             ],
             achievements: [
-              "12PCS 처리 시간 3분 5초 → 2분 57초 단축",
-              "PCS당 평균 처리 속도 15.4초 → 14.7초 개선",
-              "실제 작업자 기준 13PCS 처리 가능 수준으로 생산성 향상",
+              "12PCS 처리 시간 3분 5초 → 2분 57초 단축, PCS당 평균 처리 속도 15.4초 → 14.7초 개선",
             ],
           },
           {
-            name: "요청사항 카테고리화 및 휴먼 에러 방지 시스템 구축",
-            period: "2023.07 ~ 2023.08",
-            problem: "작업자가 실수를 하더라도 고객 요청사항이 제대로 처리되었는지 확인할 수 없는 구조",
-            role: "스쿼드 프론트엔드 개발자로 요청 유형을 정리하고, 누락을 방지하는 요청사항 관리 기능을 구현",
+            name: "입고 프로세스 고도화 — 휴먼 에러 방지 및 자동화",
+            period: "2023.07 ~ 2024.02",
+            problem: "작업자 실수로 고객 요청사항 누락·매칭 오류가 반복되고, 데미지 발생 시 사후 대응으로 고객 불만이 지속되는 구조",
+            role: "스쿼드 프론트엔드 개발자로 요청사항 관리·자동 매칭·사전 안내 시스템을 설계, 구현",
             contributions: [
-              "모든 고객 요청사항에 대한 카테고리 체계 설계 및 구현",
-              "유료 요청사항 대상 휴먼 에러 방지 프로세스 구축",
-              "오류 발생 시 공장 매니저와 즉시 소통 가능한 처리 구조 설계",
+              "고객 요청사항 카테고리 체계 설계 및 휴먼 에러 방지 프로세스 구축",
+              "요청사항 자동 매칭 시스템 도입으로 수작업 매칭 제거",
+              "데미지 사전 안내 프로세스로 사후 대응 → 사전 예방 구조 전환",
             ],
             achievements: [
-              "유료 요청사항 누락률 0.19% → 0.12% (약 34% 개선)",
-              "기존 일 평균 14건 발생하던 크리티컬 휴먼 에러 방지",
+              "유료 요청사항 누락률 0.19% → 0.12%, 추가 요청 반영률 56.16% → 93.28% 개선, 고객 불만 10% 감소",
             ],
-          },
-          {
-            name: "요청사항 자동 매칭 및 추가 요청 처리 자동화",
-            period: "2023.09 ~ 2023.11",
-            problem: "작업자가 고객 요청사항을 직접 매칭하는 구조로, 매칭 실수가 발생해도 이를 확인하거나 감지할 수 없는 상황",
-            role: "스쿼드 프론트엔드 개발자로 작업자 요청사항 매칭을 시스템 기반으로 전환하는 처리 기능을 구현",
-            contributions: [
-              "고객 요청사항 전체 스캔 기반 자동 매칭 시스템 설계, 구현",
-              "추가 요청사항 반영 프로세스 자동화 설계 및 적용",
-            ],
-            achievements: ["추가 요청사항 반영률 56.16% → 93.28% 개선"],
-          },
-          {
-            name: "데미지 등록 사전 안내 및 커뮤니케이션 프로세스 구축",
-            period: "2024.01 ~ 2024.02",
-            problem: "세탁물 데미지 발생 시 사후 안내 위주의 대응으로 고객 불만이 반복 발생",
-            role: "스쿼드 프론트엔드 개발자로 고객 사전 안내 기준을 정리하고, 커뮤니케이션 화면을 구현",
-            contributions: [
-              "매니저 ↔ 고객 간 커뮤니케이션 흐름 구조화",
-              "세탁물 데미지 사전 안내 프로세스 구축을 통한 컴플레인 예방 구조 설계, 구현",
-            ],
-            achievements: ["데미지 발생 시 사후 대응 중심이던 구조를 사전 안내, 확인 방식으로 전환하여 10% 고객 불만 감소"],
           },
         ],
       },
       {
         name: "Agent App",
         description: "세탁 서비스를 배송, 관리를 할 수 있는 앱 (iOS, Android)",
-        tech: ["React Native 0.62.2", "JavaScript", "StyleSheet", "yarn", "Metro Bundler"],
+        tech: ["React Native", "JavaScript"],
         subProjects: [
           {
-            name: "출고 바코드 패키지 스캔",
-            period: "2023.07 ~ 2023.08",
-            problem: "출고 패키징 과정이 수기 입력 방식으로 이루어져 휴먼 에러 발생 가능성이 높고 작업 효율이 낮은 상태",
-            role: "스쿼드 단위 협업을 통해 스캔 기반 출고, 검증 프론트엔드 기능 설계 및 구현",
+            name: "출고 검증 자동화 — 바코드 스캔 및 오적재 방지",
+            period: "2023.07 ~ 2023.12",
+            problem: "출고 과정이 수기 입력 기반으로 휴먼 에러가 빈번하고, 의류 오적재 이슈가 지속 발생",
+            role: "스쿼드 단위 협업을 통해 스캔 기반 출고 검증 프론트엔드 기능 설계 및 구현",
             contributions: [
-              "기존 입력 방식 대신 QR / 바코드 스캔 기반 패키징 처리 화면 개발",
-              "스캔을 통한 데이터 자동 입력으로 불필요한 수기 프로세스 제거",
+              "QR/바코드 스캔 기반 패키징 처리로 수기 입력 프로세스 제거",
+              "출고 전 스캔 검증 단계 도입으로 오적재 사전 방지 구조 확보",
             ],
             achievements: [
-              "수기 입력으로 인한 휴먼 에러 방지",
-              "패키징 처리 속도 향상 및 불필요한 작업 단계 제거를 통한 현장 생산성 개선",
-            ],
-          },
-          {
-            name: "오적재 방지 스캔",
-            period: "2023.11 ~ 2023.12",
-            problem: "출고 과정에서 고객에게 전달되는 의류가 잘못 적재되는 이슈 지속 발생",
-            role: "스쿼드 단위 협업을 통해 출고 전 검증 단계의 스캔 기반 오적재 방지 프론트엔드 화면 및 로직 구현",
-            contributions: [
-              "출고 전 단계에서 스캔을 통해 상품 적재 여부를 검증하는 기능 개발",
-              "잘못된 의류 적재 시 즉시 인지 가능한 UI 및 처리 흐름 구현",
-            ],
-            achievements: [
-              "오적재 사전 방지 구조 확보",
-              "출고 오류 감소로 고객 클레임 및 재작업 비용 절감에 기여",
+              "수기 입력 휴먼 에러 방지 및 출고 오류 감소로 고객 클레임·재작업 비용 절감",
             ],
           },
         ],
@@ -222,7 +181,7 @@ const projects = [
       {
         name: "User App",
         description: "세탁 서비스를 신청, 결제를 할 수 있는 앱 (iOS, Android)",
-        tech: ["React Native 0.72.1", "TypeScript", "Recoil", "React-Query", "Styled Components", "FCM", "APNS"],
+        tech: ["React Native", "TypeScript", "Recoil", "React-Query", "Styled Components"],
         subProjects: [
           {
             name: "모바일 앱 리뉴얼",
@@ -230,11 +189,9 @@ const projects = [
             problem: "기존 모바일 앱 구조가 복잡하고 확장성이 낮아 기능 추가 및 안정적인 운영에 한계. 딥링크·푸시 로직이 분산되어 있어 유지보수 및 운영 효율 저하",
             role: "프론트엔드 개발자(팀원)로 모바일 앱 리뉴얼 작업에 참여. 딥링크·푸시 등 앱 핵심 기능 구현 담당",
             contributions: [
-              "앱 전반 리뉴얼 및 안정화 작업 수행",
-              "iOS / Android 배포 심사 대응 및 2023.02.13 정식 런칭 지원",
-              "딥링크, 앱 링크, 유니버설 링크, 푸시 알림(APNS, FCM), Code Push 구현",
-              "딥링크, 푸시 처리 로직 모듈화 및 단일 인터페이스로 통합",
-              "Server Driven UI 환경에서 jsonpath 기반 동적 라우팅 처리 구조 구현",
+              "앱 전반 리뉴얼 및 안정화, iOS / Android 배포 심사 대응 후 2023.02.13 정식 런칭",
+              "분산되어 있던 딥링크·푸시 로직을 단일 모듈로 통합, 마케터가 Admin에서 직접 운영 가능한 구조로 전환",
+              "Server Driven UI 기반 동적 라우팅으로 앱 업데이트 없이 화면 구성 변경 가능한 구조 확보",
             ],
             achievements: [
               "마케터가 직접 사용할 수 있는 Admin 기반 딥링크·앱 푸시 요청 → 처리 → 전송 파이프라인 구축",
@@ -257,7 +214,7 @@ const projects = [
       {
         name: "마케팅 페이지",
         description: "고객이 유저앱으로 볼 수 있는 제휴협의, 이벤트 웹 페이지",
-        tech: ["Next.js 12", "React", "JavaScript", "Styled Components", "yarn", "Webpack"],
+        tech: ["Next.js 12", "React", "JavaScript", "Styled Components"],
         subProjects: [
           {
             name: "마케팅 제휴·이벤트 웹뷰 페이지 개발",
@@ -277,75 +234,36 @@ const projects = [
     companyDescription: "클라이언트의 비즈니스 성격에 맞게 반응형 웹, 모바일 앱(iOS, Android)을 제작",
     items: [
       {
-        name: "탱고픽 App",
-        description: "가상자산으로 주식, 투자를 기반으로 포트폴리오 생성이 가능하고 투자전략 공유가 가능한 앱",
-        serviceClosed: true,
-        tech: ["React Native 0.67.3", "TypeScript", "Jotai", "StyleSheet", "FCM", "APNS"],
+        name: "탱고픽 App · Web",
+        description: "가상자산 투자 포트폴리오 및 투자전략 공유 플랫폼 (외주)",
+        tech: ["React Native", "React", "TypeScript", "Jotai"],
         subProjects: [
           {
-            name: "탱고픽 App v3.2 개발 및 유지보수",
+            name: "탱고픽 App v3.2 개발 및 Web 유지보수",
             period: "2022.04 ~ 2022.10",
-            problem: "앱 v3.2 신규 버전 출시를 위해, 기존 기능 개선과 외부 SDK 연동을 포함한 기능 확장이 요구됨",
-            role: "외주 프로젝트의 프론트엔드 개발자로서 App v3.2 개발 및 운영 참여",
+            problem: "앱 신규 버전 출시와 웹 서비스 안정 운영이 동시에 요구되는 상황",
+            role: "프론트엔드 개발자로서 App v3.2 개발, 외부 SDK 연동, Web 유지보수 담당",
             contributions: [
-              "탱고픽 App v3.2 버전 기능 개발 참여",
-              "ebest SDK Native Android 연동을 통한 기능 구현",
-              "앱 운영 중 발생하는 이슈 대응 및 지속적인 유지보수 수행",
+              "앱 v3.2 기능 개발 및 ebest SDK Native Android 연동",
+              "웹 서비스 유지보수 및 신규 기획 페이지 개발",
             ],
           },
         ],
       },
       {
-        name: "탱고픽 Web",
-        description: "자신만의 투자전략 공유가 가능한 커뮤니티 웹",
-        serviceClosed: true,
-        tech: ["React 17", "TypeScript", "Jotai", "Scss", "npm", "Webpack"],
-        subProjects: [
-          {
-            name: "신규 기획 페이지 개발 및 Web 유지보수 (외주)",
-            period: "2022.04 ~ 2022.07",
-            problem: "웹 개발자가 부재한 상황에서 앱 내 기획 페이지 및 웹 서비스 운영을 안정적으로 유지해야 하는 상황",
-            role: "외주 프로젝트의 프론트엔드 개발자로서 기획 페이지 개발 및 웹 유지보수 담당",
-            contributions: [
-              "앱에 적용되는 신규 기획 페이지 개발",
-              "탱고픽 Web 서비스 유지보수 및 이슈 대응",
-            ],
-          },
-        ],
-      },
-      {
-        name: "뭄무",
+        name: "뭄무 · 포스트팩토리 2.0",
         url: "https://www.mummu.kr/",
-        description: "디자인 등록, 스케줄관리, 납품, 발주, 사용자 관리를 제공하는 관리자/사용자/홈 웹",
+        description: "외부 클라이언트 대상 Mono Repo 기반 멀티 사이트 개발 (관리자/고객사/홈/쇼핑몰)",
         tech: ["Next.js 12", "TypeScript", "Mobx", "Styled Components", "Lerna", "Storybook"],
         subProjects: [
           {
-            name: "Mono Repo 기반 멀티 사이트 개발 (외부 클라이언트)",
-            period: "2021.12 ~ 2022.03",
-            problem: "외부 클라이언트 요청에 따라 관리자, 고객사, 홈 사이트를 동시에 개발",
-            role: "외부 클라이언트 요청 기반 프로젝트에서 프론트엔드 개발자(팀원)로 개발 참여",
+            name: "Mono Repo 기반 멀티 사이트 개발",
+            period: "2021.07 ~ 2022.03",
+            problem: "외부 클라이언트 요청에 따라 복수의 사이트를 동시에 개발·운영해야 하는 환경",
+            role: "프론트엔드 개발자(팀원)로 2개 프로젝트에 걸쳐 멀티 사이트 개발 참여",
             contributions: [
-              "Lerna 기반 Mono Repo 구조로 관리자 / 고객사 / 홈 사이트 개발 참여",
-              "Storybook을 활용한 공통 컴포넌트 개발 및 관리",
-            ],
-          },
-        ],
-      },
-      {
-        name: "포스트팩토리 2.0",
-        description: "셀러와 리셀러 간 권한 기반 판매 구조와 수수료 정산을 제공하는 B2B2C 플랫폼/쇼핑몰/관리자 웹",
-        serviceClosed: true,
-        tech: ["Next.js 12", "TypeScript", "Mobx", "Styled Components", "Lerna", "Storybook"],
-        subProjects: [
-          {
-            name: "Mono Repo 기반 멀티 사이트 개발 (외부 클라이언트)",
-            period: "2021.07 ~ 2021.11",
-            problem: "외부 클라이언트 요청에 따라 플랫폼, 쇼핑몰, 관리자 사이트를 동시에 개발",
-            role: "외부 클라이언트 요청 사항을 반영하는 프론트엔드 개발자(팀원)로 개발 참여",
-            contributions: [
-              "Lerna 기반 Mono Repo 구조로 플랫폼 / 쇼핑몰 / 관리자 사이트 개발 참여",
-              "Atomic Design 패턴을 적용한 컴포넌트 설계 및 구현",
-              "Storybook 기반 공통 컴포넌트 관리",
+              "Lerna 기반 Mono Repo 구조로 관리자/고객사/홈/쇼핑몰 등 멀티 사이트 개발",
+              "Atomic Design + Storybook 기반 공통 컴포넌트 설계 및 관리",
             ],
           },
         ],
@@ -357,38 +275,19 @@ const projects = [
     companyDescription: "개인 세무회계사에서 가장 많이 사용하는 ERP솔루션 업체",
     items: [
       {
-        name: "리포트 테스트 웹 페이지",
-        description: "GS인증 1등급을 받기위해 리포트 프로그램과 연동한 테스트 웹",
-        tech: ["React", "JavaScript", "Redux", "Styled Components", "npm"],
+        name: "ERP 솔루션 개발",
+        description: "GS 인증 대응 웹 페이지 개발 및 ERP 리포트 연동",
+        tech: ["React", "JavaScript", "C++", "MFC"],
         subProjects: [
           {
-            name: "GS 인증 대응 페이지 개발",
-            period: "2020.09 ~ 2020.12",
-            problem: "GS 인증 획득을 위해 인증 항목별 요구사항을 충족하는 전용 기능 및 검증 페이지가 필요",
-            role: "프론트엔드 개발자로서 GS 인증 대응 페이지 개발 담당",
+            name: "GS 인증 대응 및 ERP 리포트 연동",
+            period: "2020.04 ~ 2020.12",
+            role: "프론트엔드·C++ 개발자로서 GS 인증 페이지 개발 및 ERP 인쇄 기능 연동 담당",
             contributions: [
-              "GS 인증 요구사항에 맞춰 로그인 페이지, 파일 업로드 페이지, 그리드 입력 페이지 개발",
-              "인증 검증을 위한 테스트 전용 페이지 개발 및 인증 기관 제공",
+              "GS 인증 요구사항에 맞춘 테스트 웹 페이지 개발 및 인증 기관 제공",
+              "ERP 시스템의 외부 인쇄 솔루션 의존을 자사 솔루션으로 전환",
             ],
             achievements: ["GS 1등급 인증 획득"],
-          },
-        ],
-      },
-      {
-        name: "ERP 리포트 연동",
-        description: "뉴젠솔루션에서 기존에 개발된 ERP프로그램과 리포트프로그램 연동",
-        tech: ["C++", "MFC"],
-        subProjects: [
-          {
-            name: "ERP 연동 인쇄 리포트 기능 개발",
-            period: "2020.04 ~ 2020.08",
-            problem: "ERP 시스템의 인쇄 기능이 외부 솔루션에 의존하고 있어 운영·유지보수 및 비용 측면에서 개선이 필요",
-            role: "프론트엔드 개발자로서 ERP 연동 인쇄 리포트 기능 개발 담당",
-            contributions: [
-              "ERP 프로그램의 인쇄 버튼과 연동하여 리포트 프로그램을 통해 인쇄 양식을 렌더링하는 기능 구현",
-              "기존 외부 인쇄 솔루션 사용 방식에서 자사 인쇄 솔루션으로 전환",
-            ],
-            achievements: ["외부 솔루션 의존 없이 자사 시스템 내에서 인쇄 기능을 운영할 수 있는 구조 확보"],
           },
         ],
       },
@@ -399,39 +298,18 @@ const projects = [
     companyDescription: "대기업과 협업을 통해서 프로젝트를 진행하는 개발 에이전시",
     items: [
       {
-        name: "해군 잠수함 프로젝트",
-        description: "선원들이 잠수함에서 워치를 착용하고있는 워치에서 보내는 이벤트를 실시간으로 관리하는 관리자 웹",
-        tech: ["JavaScript", "jQuery"],
+        name: "SKB 셋톱박스 · 해군 시스템",
+        description: "SK BroadBand 셋톱박스 서비스 화면 개발 및 해군 군수현황 관리 시스템 개발",
+        tech: ["C++", "Lua", "JavaScript", "jQuery"],
         subProjects: [
           {
-            name: "해군 군수현황관리 시스템 개발",
-            period: "2019.06 ~ 2019.11",
-            problem: "군수 자산의 현황을 분산 관리하여 부서·임무별 현황 파악과 사용량 분석이 어려운 상황",
-            role: "프론트엔드 개발자로서 군수현황 관리 화면 개발 담당",
-            contributions: [
-              "군수현황 기본 조회 및 날짜별 조회 기능 구현",
-              "임무, 부서별 조회 기능 및 군수 데이터 등록, 수정 기능 개발",
-              "평균 사용량을 확인할 수 있는 통계 조회 페이지 개발",
-            ],
-          },
-        ],
-      },
-      {
-        name: "SKB STB (SKBroadBand 셋톱박스)",
-        description: "SK BroadBand 셋탑박스에서의 화면 영역",
-        tech: ["C++", "Lua", "Shell Script", "SK Framework"],
-        subProjects: [
-          {
-            name: "셋톱박스 v5.0 서비스 기능 개발",
+            name: "셋톱박스 v5.0 및 군수현황관리 시스템 개발",
             period: "2017.11 ~ 2019.11",
-            problem: "셋톱박스 메이저 버전 업데이트 과정에서, 다양한 사용자 시나리오를 반영한 서비스 기능 확장이 요구됨",
-            role: "STB 개발자로서 셋톱박스 서비스 기능 개발 참여",
+            role: "STB 개발자 및 프론트엔드 개발자로 대기업 협업 프로젝트 참여",
             contributions: [
-              "셋톱박스 v5.0 설정 화면 개발",
-              "VOD 재생 중 노출되는 중간 광고 기능 개발",
-              "키즈 전용 VOD 서비스 화면 개발",
+              "SK BroadBand 셋톱박스 v5.0 설정·광고·키즈 VOD 화면 개발 (약 100만 사용자 대상)",
+              "해군 군수현황 관리 시스템의 조회·등록·통계 화면 개발",
             ],
-            achievements: ["약 100만 사용자 대상 셋톱박스 v5.0 업데이트 화면 제공"],
           },
         ],
       },
@@ -440,13 +318,12 @@ const projects = [
 ];
 
 const skills = [
-  { category: "Languages", items: ["TypeScript", "JavaScript", "C++"] },
+  { category: "Languages", items: ["TypeScript", "JavaScript"] },
   { category: "Frontend", items: ["React", "Next.js", "React Native"] },
-  { category: "State Management", items: ["Zustand", "SWR", "Recoil", "Jotai", "Mobx"] },
-  { category: "Styling", items: ["TailwindCSS", "Shadcn UI", "Mantine UI", "Styled Components"] },
-  { category: "AI Tools", items: ["Claude Code", "Cursor", "Figma MCP", "Playwright MCP"] },
-  { category: "DevOps", items: ["Docker", "AWS EKS", "GitHub Actions", "Kubernetes"] },
-  { category: "Tools", items: ["Git", "pnpm", "Storybook", "Lerna"] },
+  { category: "State Management", items: ["Zustand", "SWR", "Jotai"] },
+  { category: "Styling", items: ["TailwindCSS", "Shadcn UI"] },
+  { category: "AI Tools", items: ["Claude Code", "Cursor"] },
+  { category: "DevOps", items: ["Docker", "AWS EKS", "GitHub Actions"] },
 ];
 
 
@@ -623,9 +500,11 @@ function ResumeContent() {
         </h3>
         <div className="space-y-4 text-foreground/80 leading-relaxed sm:text-base">
           <p className="pl-1">
-            유저가 해결하고자 하는 문제를 파악하고, 그 문제를 풀어 프로덕트로
-            만들어가는 데 집중하는 엔지니어입니다. Claude Code 기반 AI
-            워크플로로 이 사이클을 빠르게 반복합니다.
+            6년차 프론트엔드 엔지니어로, 유저의 문제를 파악하고 프로덕트로
+            만들어가는 데 집중합니다. SaaS 플랫폼 기획부터 출시까지 리드한
+            경험이 있으며, Claude Code 기반 AI 워크플로로 개발 사이클을 빠르게
+            반복합니다. 물류 현장의 생산성 개선부터 마케팅 자동화 플랫폼까지,
+            실사용자의 업무를 실질적으로 바꾸는 제품을 만들어왔습니다.
           </p>
         </div>
       </section>
