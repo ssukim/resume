@@ -55,7 +55,7 @@ const projects = [
         name: "Conma",
         url: "https://conma.ai/",
         description: "인스타그램 댓글·DM 자동화·리포트 통합 관리 웹",
-        tech: ["Next.js 16", "React 19", "TypeScript", "Zustand", "SWR", "TailwindCSS", "Shadcn UI", "AWS EKS", "Docker", "GitHub Actions"],
+        tech: ["Next.js 16", "React 19", "TypeScript", "Zustand", "SWR", "TailwindCSS", "Shadcn UI", "NestJS", "MongoDB", "Python", "AWS EKS", "ECS Fargate", "SQS", "Athena", "Docker", "GitHub Actions"],
         subProjects: [
           {
             name: "Conma 플랫폼",
@@ -73,6 +73,67 @@ const projects = [
               "Claude Code 생태계를 팀 공용 워크플로로 정착, 제품 개발·출시 속도 향상",
             ],
           },
+          {
+            name: "유료화 — 플랜·크레딧·결제",
+            period: "2026.03 ~ 2026.05",
+            problem: "무료로만 운영되던 플랫폼에 수익 모델이 없어, 기능 사용량과 과금을 연결할 구조가 부재한 상황",
+            role: "프론트엔드 개발자로 플랜·크레딧·결제 화면과 출시 후 체험 정책 전환 대응을 담당",
+            contributions: [
+              "Free/Plus 2-tier 플랜과 크레딧 통합 모델 기반 결제 플로우(Toss) 프론트엔드 구현",
+              "출시 직후 카드 등록 강제로 인한 체험 진입 마찰이 확인되자, 카드 등록 폐기 + 자동 Free 전환으로 정책 전환 대응",
+              "결제 상태(미납·정지) 정산 후 자동응대를 재활성하는 흐름 구현",
+            ],
+            achievements: [
+              "2026.05 유료화 PROD 출시로 플랫폼 첫 수익 모델 가동",
+              "체험 진입 마찰 지표를 근거로 2주 만에 결제 정책을 되돌려, 가입 이탈 요인 제거",
+            ],
+          },
+          {
+            name: "인사이트 v2 · 리포트",
+            period: "2026.04 ~ 2026.06",
+            problem: "인스타그램 성과 데이터가 여러 수집 경로로 흩어져 지표 신뢰성이 떨어지고, 유저가 자기 계정의 성과를 해석할 수 있는 분석 화면이 부재한 상황",
+            role: "프로젝트 리더로 기획부터 프론트엔드·백엔드 이식까지 전 구간을 단독 리드 (Claude Code 페어 개발)",
+            contributions: [
+              "Instagram Graph API를 단일 소스로 삼도록 계정 인사이트 수집 로직을 백엔드로 이식",
+              "기간 선택·인구통계·게시물 단위 분석·Export를 포함한 인사이트 v2 화면 재설계",
+              "리포트 풀 UI 대신 '무료 리포트 신청' 채널을 먼저 출시해 수요를 선검증하는 단계적 출시 전략 설계",
+              "SQS → S3 → Athena 기반 행동 이벤트 트래킹 설계로 인터랙션·페이월 지표 계측 체계 구축",
+            ],
+            achievements: [
+              "인사이트 v2 정식 오픈 — 능동 사용 유저 109명(도달 대비 57%), 주간 활성 42~45명",
+              "수집 경로 일원화로 데이터 drift 0 달성, 지표 신뢰성 확보",
+              "허수였던 방문수 대신 인터랙션·재방문·페이월 클릭을 KPI로 재정의",
+            ],
+          },
+          {
+            name: "리포트 클라우드 자동화 · 온디맨드 기간 리포트",
+            period: "2026.06 ~ 2026.07",
+            problem: "자사 리포트 생성이 로컬 맥에서 도는 사이클러에 종속돼, 담당자 PC가 꺼지면 리포트가 나오지 않는 운영 리스크가 상시 존재",
+            role: "프로젝트 리더 겸 단독 개발자로 파이프라인 클라우드 이전과 온디맨드 리포트 전 구간을 설계·구현",
+            contributions: [
+              "ECS Fargate + EventBridge cron 기반 무인 리포트 생성 파이프라인으로 이전, 로컬 종속 완전 제거",
+              "유저가 기간을 직접 선택해 요청하는 온디맨드 리포트를 SQS 큐 기반 비동기 빌드 구조로 구현",
+              "크레딧 차감·데이터 부재 계정 거절 등 과금·예외 정책을 파이프라인에 반영",
+            ],
+            achievements: [
+              "리포트 생성 완료율 96.3%, 생성 리드타임 p50 약 80초, 파이프라인 결함 실패 0건",
+              "요청 80건 / 유저 63명을 무인 운영으로 처리, 건당 원가 대비 차감 역전 없이 안정 운영",
+            ],
+          },
+          {
+            name: "Conma Admin 대시보드",
+            period: "2026.03 ~ 현재",
+            problem: "플랫폼 성장에 따라 유저 행동 데이터를 체계적으로 분석하고 제품 의사결정에 활용할 수 있는 내부 도구가 부재",
+            role: "BI 대시보드의 풀스택 설계·구현을 담당 (NestJS API + Next.js 프론트엔드)",
+            contributions: [
+              "AWS Athena + S3 데이터레이크 기반 이벤트 분석 파이프라인 구축",
+              "Acquisition, Retention, Feature Usage 등 핵심 지표 대시보드 설계·구현",
+              "MongoDB 연동 유저 조회 및 상세 분석 기능 개발",
+            ],
+            achievements: [
+              "유저 행동 트래킹 체계 구축으로 감 기반 의사결정에서 지표 기반 제품 개선 사이클로 전환",
+            ],
+          },
         ],
       },
       {
@@ -88,7 +149,7 @@ const projects = [
             role: "기획 단계부터 참여해 캘린더 뷰 체계 설계, 결제·인증 시스템 구현, GS 인증까지 프론트엔드 전반을 리드",
             contributions: [
               "사용자 워크플로 분석 기반 7개 캘린더 뷰 체계 설계로, 팀 규모·업무 성격에 맞는 일정 관리 경험 제공",
-              "직관적 일정 조작 UX(DnD 이동·리사이즈·크로스 뷰)로 기존 클릭 기반 대비 일정 편집 동선 단축",
+              "드래그 앤 드롭 기반 일정 이동·리사이즈·크로스 뷰 전환 등 캘린더 핵심 인터랙션 설계·구현",
               "결제·인증·GS 인증 등 서비스 상용화에 필요한 전체 인프라 구축",
             ],
             achievements: [
@@ -322,8 +383,10 @@ const skills = [
   { category: "Frontend", items: ["React", "Next.js", "React Native"] },
   { category: "State Management", items: ["Zustand", "SWR", "Jotai"] },
   { category: "Styling", items: ["TailwindCSS", "Shadcn UI"] },
+  { category: "Backend", items: ["NestJS", "MongoDB", "Python"] },
+  { category: "Data", items: ["AWS Athena", "S3", "SQS"] },
   { category: "AI Tools", items: ["Claude Code", "Cursor"] },
-  { category: "DevOps", items: ["Docker", "AWS EKS", "GitHub Actions"] },
+  { category: "DevOps", items: ["Docker", "AWS EKS", "ECS Fargate", "GitHub Actions"] },
 ];
 
 
@@ -500,10 +563,12 @@ function ResumeContent() {
         </h3>
         <div className="space-y-4 text-foreground/80 leading-relaxed sm:text-base">
           <p className="pl-1">
-            6년차 프론트엔드 엔지니어로, 유저의 문제를 파악하고 프로덕트로
-            만들어가는 데 집중합니다. SaaS 플랫폼 기획부터 출시까지 리드한
-            경험이 있으며, Claude Code 기반 AI 워크플로로 개발 사이클을 빠르게
-            반복합니다. 물류 현장의 생산성 개선부터 마케팅 자동화 플랫폼까지,
+            유저의 문제를 파악하고 프로덕트로 만들어가는 데 집중하는
+            엔지니어입니다. SaaS 플랫폼 기획부터 출시까지 리드한 경험이
+            있으며, 프론트엔드를 기반으로 백엔드·데이터 파이프라인까지 필요한
+            범위를 직접 맡아 제품을 완성합니다. Claude Code 기반 AI 워크플로로
+            개발 사이클을 빠르게 반복하고, 트래킹 지표로 다음 개선을
+            결정합니다. 물류 현장의 생산성 개선부터 마케팅 자동화 플랫폼까지,
             실사용자의 업무를 실질적으로 바꾸는 제품을 만들어왔습니다.
           </p>
         </div>
