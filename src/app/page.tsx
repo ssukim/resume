@@ -63,7 +63,7 @@ const projects = [
             problem: "인플루언서, 브랜드, 마케팅 대행사가 Instagram 캠페인을 운영하는 과정에서 댓글 관리, DM 응대, 성과 확인 등이 수작업 중심으로 이루어져 반복 업무와 운영 비효율이 누적되는 문제",
             role: "Claude Code 기반 AI 개발 워크플로를 구축하고, 기획부터 프론트엔드 설계·인프라까지 제품 전반을 리드",
             contributions: [
-              "Claude Code 기반 AI 개발 생태계 구축 — CLAUDE.md 계층, 커스텀 커맨드·Agent·Rules·Skills 설계로 팀원 누구나 기획→개발→QA를 AI와 함께 수행할 수 있는 워크플로 구축",
+              "Claude Code 기반 AI 개발 생태계 구축 — CLAUDE.md 계층 2단, 커스텀 Skill 7종·검증 Agent 2종을 설계해 팀원 누구나 기획→개발→QA를 AI와 함께 수행할 수 있는 공용 워크플로로 정착",
               "댓글 자동 응대, 벌크 댓글 관리, 댓글 이벤트 추첨 등 마케터의 반복 업무를 없애는 핵심 기능을 기획·디자인 리뷰·개발·QA·배포까지 에픽 단위로 리드",
               "4개 국어 지원과 워크스페이스 기반 협업 구조를 설계해 팀 단위·글로벌 사용자 온보딩 기반 마련",
               "SEO/AEO/GEO 최적화 — llms.txt, JSON-LD 4종, 다국어 sitemap 80여 URL, AI 크롤러 9종 허용으로 AI 검색엔진 노출 확보 (블로그 플랫폼 TipTap + Supabase, ISR 구축 포함)",
