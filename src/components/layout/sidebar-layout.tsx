@@ -25,7 +25,7 @@ function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
         <h1 className="text-lg font-bold text-foreground">
           JeongSu Kim
         </h1>
-        <p className="mt-1 text-sm text-muted-foreground">Product Engineer</p>
+        <p className="mt-1 text-sm text-muted-foreground">Product Engineer · Full-stack</p>
       </div>
 
       <Separator className="my-5" />
