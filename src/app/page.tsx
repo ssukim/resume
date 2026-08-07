@@ -65,7 +65,7 @@ const projects = [
             contributions: [
               "팀원과 AI가 함께 일하는 문서 허브 설계·구축 — 기획·개발·QA·회고를 하나의 규약으로 통합, 팀 5명이 상시 사용",
               "커스텀 Skill·Agent로 운영 자동화 — 수집 사이클러(cron), MongoDB 적재, Jira 동기화, PRD·QA 검증",
-              "댓글 자동 응대, 벌크 댓글 관리, 댓글 이벤트 추첨 등 마케터의 반복 업무를 없애는 핵심 기능을 기획·디자인 리뷰·개발·QA·배포까지 에픽 단위로 리드",
+              "마케터의 반복 댓글 대응을 없애는 자동 응대 기능을 기획·디자인 리뷰·개발·QA·배포까지 에픽 단위로 리드",
               "워크스페이스 기반 협업 구조를 설계해 팀 단위 사용 기반 마련",
               "블로그 플랫폼 구축(TipTap + Supabase, ISR)과 SEO/AEO 최적화 — llms.txt 도입, BlogPosting·BreadcrumbList 스키마 추가, 시맨틱 구조·sitemap 정비",
               "AWS EKS 개발·운영 환경 분리, 모니터링(Prometheus+Grafana+Loki), 도메인 무중단 마이그레이션",
