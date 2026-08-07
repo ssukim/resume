@@ -68,6 +68,7 @@ const projects = [
               "4개 국어 지원과 워크스페이스 기반 협업 구조를 설계해 팀 단위·글로벌 사용자 온보딩 기반 마련",
               "SEO/AEO/GEO 최적화 — llms.txt, JSON-LD 4종, 다국어 sitemap 80여 URL, AI 크롤러 9종 허용으로 AI 검색엔진 노출 확보 (블로그 플랫폼 TipTap + Supabase, ISR 구축 포함)",
               "AWS EKS 개발·운영 환경 분리, 모니터링(Prometheus+Grafana+Loki), 도메인 무중단 마이그레이션",
+              "프로젝트 문서 체계 설계 — PRD·결과 회고·history 이관 구조를 표준화해, 담당자가 바뀌어도 의사결정 맥락이 복원되는 인계 체계 구축",
             ],
             achievements: [
               "누적 가입 유저 1,400여 명 · 연결 인스타그램 계정 890여 개 규모로 성장 (2026.07 기준)",
@@ -183,20 +184,23 @@ const projects = [
               "레거시 Admin 기존 10개 페이지 마이그레이션",
               "신규 Admin 페이지 9개 개발",
             ],
-            achievements: ["CS, Factory 등 약 70명 규모의 실사용 조직을 신규 도메인 Admin 구조로 성공적으로 전환"],
+            achievements: [
+              "CS, Factory 등 약 70명 규모의 실사용 조직을 신규 도메인 Admin 구조로 성공적으로 전환",
+              "설계한 도메인 분리 구조가 퇴사 후 2년 이상 유지·확장되며 운영 지속 — 조직 성장을 견딘 아키텍처로 검증",
+            ],
           },
         ],
       },
       {
         name: "입고 Admin",
-        description: "고객이 맡긴 세탁물을 입고 단계 Admin 웹",
+        description: "물류 센터 작업자가 매일 사용하는 세탁물 입고 처리 운영 시스템",
         tech: ["Next.js 13", "TypeScript", "Zustand", "SWR"],
         subProjects: [
           {
             name: "입고 Admin 플랫폼 리뉴얼",
             period: "2023.03 ~ 2023.06",
             problem: "기존 입고 시스템의 복잡한 프로세스로 인해 처리 속도가 느리고 작업자 생산성 개선에 한계가 있는 상황",
-            role: "스쿼드 프론트엔드 개발자로 입고 Admin 전면 리뉴얼을 담당",
+            role: "스쿼드 프론트엔드 개발자로, 현장 작업자의 처리 동선을 분석해 입고 Admin 전면 리뉴얼을 담당",
             contributions: [
               "기존 입고 프로세스를 신규 Admin 플랫폼으로 전면 리뉴얼, 전체 입고 프로세스 전환 적용",
               "신규 플랫폼 기반으로 PO와 협업하며 기능 고도화",
