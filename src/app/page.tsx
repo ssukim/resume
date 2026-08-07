@@ -67,7 +67,8 @@ const projects = [
               "커스텀 Skill·Agent로 운영 자동화 — 수집 사이클러(cron), MongoDB 적재, Jira 동기화, PRD·QA 검증",
               "마케터의 반복 댓글 대응을 없애는 자동 응대 기능을 기획·디자인 리뷰·개발·QA·배포까지 에픽 단위로 리드",
               "워크스페이스 기반 협업 구조를 설계해 팀 단위 사용 기반 마련",
-              "블로그 플랫폼 구축(TipTap + Supabase, ISR)과 SEO/AEO 최적화 — llms.txt 도입, BlogPosting·BreadcrumbList 스키마 추가, 시맨틱 구조·sitemap 정비",
+              "블로그 플랫폼 구축(TipTap + Supabase, ISR) — llms.txt·구조화 데이터·시맨틱 구조 정비로 SEO/AEO 최적화",
+              "Claude 기반 블로그 발행 파이프라인 구축 — 초안·캡처·S3 업로드·DEV↔PROD 동기화를 자동화하고, 키워드 중복 게이트로 검색 순위 분산 방지",
               "AWS EKS 개발·운영 환경 분리, 모니터링(Prometheus+Grafana+Loki), 도메인 무중단 마이그레이션",
             ],
             achievements: [
