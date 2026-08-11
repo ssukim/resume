@@ -9,6 +9,7 @@ import {
   Award,
   ExternalLink,
   User,
+  Rocket,
 } from "lucide-react";
 
 // ─── Data ────────────────────────────────────────────────────
@@ -386,33 +387,30 @@ const projects = [
       },
     ],
   },
+];
+
+const sideProjects: ProjectItem[] = [
   {
-    company: "사이드 프로젝트",
-    companyDescription: "본업 밖에서 기획부터 배포·운영까지 혼자 완주하는 개인 프로젝트",
-    items: [
+    name: "Sync Block",
+    url: "https://sync-block.app",
+    description: "Google Calendar 기반 통합 일정 관리 웹 (운영 중)",
+    techGroups: [
+      { label: "FE", items: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Shadcn UI", "Zustand", "SWR", "next-intl"] },
+      { label: "BE", items: ["NestJS 11", "Prisma 7", "PostgreSQL", "Google OAuth"] },
+      { label: "Infra", items: ["Railway", "Cloudflare"] },
+    ],
+    subProjects: [
       {
-        name: "Sync Block",
-        url: "https://sync-block.app",
-        description: "Google Calendar 기반 통합 일정 관리 웹 (운영 중)",
-        techGroups: [
-          { label: "FE", items: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Shadcn UI", "Zustand", "SWR", "next-intl"] },
-          { label: "BE", items: ["NestJS 11", "Prisma 7", "PostgreSQL", "Google OAuth"] },
-          { label: "Infra", items: ["Railway", "Cloudflare"] },
+        name: "Sync Block 플랫폼",
+        period: "2025.03 ~ 현재",
+        role: "기획·디자인·프론트엔드·백엔드·인프라 전 영역을 단독 개발·운영",
+        contributions: [
+          "Google Calendar 연동 기반 월별·주별·간트차트 뷰 일정 관리 기능 구현",
+          "다국어(한국어/영어) 지원과 자체 디자인 시스템 구축",
+          "Cloudflare DNS + Railway 배포, 커스텀 도메인·SSL 직접 운영",
         ],
-        subProjects: [
-          {
-            name: "Sync Block 플랫폼",
-            period: "2025.03 ~ 현재",
-            role: "기획·디자인·프론트엔드·백엔드·인프라 전 영역을 단독 개발·운영",
-            contributions: [
-              "Google Calendar 연동 기반 월별·주별·간트차트 뷰 일정 관리 기능 구현",
-              "다국어(한국어/영어) 지원과 자체 디자인 시스템 구축",
-              "Cloudflare DNS + Railway 배포, 커스텀 도메인·SSL 직접 운영",
-            ],
-            achievements: [
-              "기획부터 프론트엔드·백엔드·DB 설계·인증·배포까지 전 과정을 단독 구축해 실서비스로 운영 중",
-            ],
-          },
+        achievements: [
+          "기획부터 프론트엔드·백엔드·DB 설계·인증·배포까지 전 과정을 단독 구축해 실서비스로 운영 중",
         ],
       },
     ],
@@ -700,6 +698,23 @@ function ResumeContent() {
                 ))}
               </div>
             </div>
+          ))}
+        </div>
+      </section>
+
+      <Separator className="my-16" />
+
+      {/* Side Projects */}
+      <section className="mb-16">
+        <h3 className="mb-2 flex items-center gap-3 text-xl font-semibold sm:text-2xl">
+          <Rocket className="h-5 w-5 text-primary" /> 사이드 프로젝트
+        </h3>
+        <p className="mb-6 text-sm text-muted-foreground leading-relaxed">
+          본업 밖에서 기획부터 배포·운영까지 혼자 완주하는 개인 프로젝트
+        </p>
+        <div className="space-y-5">
+          {sideProjects.map((project) => (
+            <ProjectCard key={project.name} project={project} />
           ))}
         </div>
       </section>
