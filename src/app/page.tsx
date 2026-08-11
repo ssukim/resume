@@ -55,36 +55,37 @@ const projects = [
         name: "Conma",
         url: "https://conma.ai/",
         description: "인스타그램 댓글·DM 자동화·리포트 통합 관리 웹",
-        tech: ["Next.js 16", "React 19", "TypeScript", "Zustand", "SWR", "TailwindCSS", "Shadcn UI", "NestJS", "MongoDB", "Python", "AWS EKS", "ECS Fargate", "SQS", "Athena", "Docker", "GitHub Actions"],
+        techGroups: [
+          { label: "FE", items: ["Next.js 16", "React 19", "TypeScript", "Zustand", "SWR", "TailwindCSS", "Shadcn UI", "TipTap"] },
+          { label: "BE", items: ["NestJS", "MongoDB", "Supabase", "Python"] },
+          { label: "Infra", items: ["AWS EKS", "ECS Fargate", "SQS", "Athena", "Prometheus", "Grafana", "Loki", "Docker", "GitHub Actions"] },
+          { label: "AI", items: ["Claude Code", "Anthropic API"] },
+        ],
         subProjects: [
           {
             name: "Conma 플랫폼",
             period: "2025.09 ~ 현재",
-            problem: "인플루언서, 브랜드, 마케팅 대행사가 Instagram 캠페인을 운영하는 과정에서 댓글 관리, DM 응대, 성과 확인 등이 수작업 중심으로 이루어져 반복 업무와 운영 비효율이 누적되는 문제",
-            role: "Claude Code 기반 AI 개발 워크플로를 구축하고, 기획부터 프론트엔드·백엔드·인프라까지 제품 전반을 리드",
+            problem: "신규 플랫폼을 소수 인원으로 빠르게 만들어야 해서, 개발 환경·인프라·협업 방식을 처음부터 세워야 했던 상황",
+            role: "프론트엔드 초기 설계와 AWS 인프라 구축을 맡고, AI 기반 개발 워크플로를 설계",
             contributions: [
-              "팀원과 AI가 함께 일하는 문서 저장소를 만들어, 기획·개발·QA·회고를 같은 형식으로 쌓이게 정리 (팀 5명이 사용 중)",
-              "Claude 커스텀 명령을 만들어 반복 작업을 자동화 — 데이터 수집 스케줄 실행, DB 적재, Jira 문서 동기화, 기획서·QA 문서 점검",
-              "여러 명이 한 계정을 함께 쓰는 워크스페이스 구조를 설계해 팀 단위 사용 기반 마련",
-              "블로그를 직접 만들고(TipTap + Supabase) 검색엔진·AI가 잘 읽도록 구조 정비",
-              "글 하나 쓰는 과정을 Claude 명령 하나로 자동화 — 초안 작성부터 화면 캡처, 이미지 업로드, 발행까지. 비슷한 주제의 글이 이미 있으면 새로 쓰지 않고 기존 글을 고치도록 해서 검색 순위가 갈리는 것을 방지",
-              "AWS EKS 개발·운영 환경 분리, 모니터링(Prometheus+Grafana+Loki), 도메인 무중단 마이그레이션",
+              "프로젝트 구조·디자인 시스템·인증 기반을 세팅해 팀 개발 환경 마련",
+              "AWS EKS 기반 개발·운영 환경 분리와 모니터링(Prometheus+Grafana+Loki) 체계 구축",
+              "회의 → 시나리오 → 개발로 이어지는 문서 규격과 Claude Code 자동화로, 기획부터 배포까지 1인 단위로 완주하는 개발 사이클 구축",
             ],
             achievements: [
-              "인스타그램 계정을 연결한 워크스페이스 800여 곳, 누적 1,258만 건의 댓글 데이터를 수집·처리",
-              "블로그를 검색 유입 채널로 확보 — 3개월 검색 클릭 2,280건(사이트 전체의 79%), 유입 검색어 578개, 평균 게재순위 6.4위",
-              "AI 페어 개발 환경을 구축해 인사이트 v2·리포트 클라우드 자동화 등 기획부터 배포까지 1인 단위로 완주하는 개발 사이클 확보",
+              "시작 11개월 만에 인스타그램 워크스페이스 800여 곳 연결, 누적 1,258만 건의 댓글 데이터를 처리하는 플랫폼으로 성장",
+              "DNS·인증서·OAuth까지 얽힌 서비스 도메인 이전을 개발·운영 환경 모두 다운타임 0으로 완료",
             ],
           },
           {
             name: "자동 DM",
             period: "2026.02 ~ 2026.03",
             problem: "인플루언서·브랜드가 게시물 댓글에 일일이 반응해 DM을 보내야 해서, 캠페인 규모가 커질수록 응대가 물리적으로 불가능해지는 상황",
-            role: "에픽 리더로 기획·디자인 리뷰·개발·QA·배포 전 구간을 담당",
+            role: "에픽 리더로 기획·디자인 리뷰·프론트엔드 개발·QA·배포를 담당",
             contributions: [
-              "게시물 선택 → 발송 조건(키워드·팔로워 여부) → 메시지 구성의 3단계 생성 플로우 설계",
-              "키워드가 포함된 댓글에 자동 DM 발송, 팔로우 인증 후 링크 전달까지 이어지는 흐름 구현",
-              "동일 게시물 중복 자동화 충돌 등 예외 시나리오를 정의하고 처리",
+              "게시물 선택 → 발송 조건 → 메시지 구성의 3단계 생성 플로우 설계",
+              "키워드 댓글에 자동 DM, 팔로우 인증 후 링크 전달까지 구현",
+              "여러 자동화가 한 게시물에 겹칠 때의 충돌 규칙을 정의",
             ],
             achievements: [
               "유료 고객의 절반(52%)이 자동 DM을 설정했고, 서비스 전체 자동 발송의 65%가 유료 고객에게서 발생",
@@ -93,13 +94,13 @@ const projects = [
           },
           {
             name: "Conma Admin — 자체 프로덕트 애널리틱스",
-            period: "2026.03 ~ 2026.04 (이후 지속 확장)",
+            period: "2026.03 ~ 2026.04",
             problem: "시중 분석 도구로는 우리 서비스에만 있는 지표(요금 소모량, 리포트 신청 단계별 이탈)를 볼 수 없고, 숫자에서 '이 유저가 누구인지'까지 파고들려면 자사 DB와 연결이 필요한 상황",
             role: "사내 분석 도구를 프론트엔드·백엔드 모두 혼자 설계·구현 (NestJS + Next.js)",
             contributions: [
-              "유저 행동 기록을 쌓고 조회하는 분석 기반을 AWS로 직접 구축",
-              "신규 유입·재방문·기능별 사용량을 우리 서비스 기준으로 정의하고 대시보드로 구현",
-              "요약 숫자에서 개별 유저까지 클릭으로 파고들 수 있게 DB와 연결",
+              "유저 행동 기록을 모아 조회할 수 있는 분석 경로를 구성",
+              "신규 유입·재방문·기능별 사용량을 우리 기준으로 정의해 대시보드로 구현",
+              "요약 숫자에서 개별 유저까지 파고들 수 있게 DB와 연결",
             ],
             achievements: [
               "시중 분석 도구를 사지 않고 직접 만들어, 서버를 새로 늘리지 않고 월 $10 미만으로 운영",
@@ -107,15 +108,14 @@ const projects = [
             ],
           },
           {
-            name: "인사이트 v2 · 무료 리포트 신청",
+            name: "인사이트 v2",
             period: "2026.04 ~ 2026.06",
             problem: "인스타그램 성과 데이터가 여러 수집 경로로 흩어져 지표 신뢰성이 떨어지고, 유저가 자기 계정의 성과를 해석할 수 있는 분석 화면이 부재한 상황",
-            role: "프로젝트 리더로 기획부터 프론트엔드·백엔드 이식까지 전 구간을 단독 리드 (Claude Code 페어 개발)",
+            role: "프로젝트 리더로 기획·지표 설계를 주도하고, 프론트엔드·백엔드 구현에 참여",
             contributions: [
               "흩어져 있던 데이터 수집 경로를 인스타그램 공식 API 하나로 통합",
-              "기간 선택·팔로워 구성·게시물별 분석·내보내기를 담은 분석 화면 재설계",
-              "완성된 리포트 화면을 바로 내보내는 대신 '무료 리포트 신청' 창구를 먼저 열어 수요부터 확인하는 단계적 출시 설계",
-              "유저가 화면을 실제로 조작했는지 알 수 있도록 측정 코드를 심음 (탭 전환, 기간 변경, 유료 안내 클릭 등)",
+              "유저가 자기 계정 성과를 스스로 해석할 수 있는 분석 화면으로 재설계",
+              "탭 전환·기간 변경 등 유저가 화면을 실제로 조작했는지 재는 측정 코드를 심음",
             ],
             achievements: [
               "정식 오픈 후 실제로 화면을 조작한 유저 109명 확보 (방문자의 57%), 주간 활성 42~45명",
@@ -124,34 +124,21 @@ const projects = [
             ],
           },
           {
-            name: "리포트 자연어 생성 — LLM 파이프라인",
+            name: "리포트 자동 생성 — LLM 파이프라인",
             period: "2026.05 ~ 2026.07",
-            problem: "경쟁사 분석 리포트의 해석 문장을 사람이 쓰면 계정 하나당 2분, 30여 개 계정이면 하루 한 시간이 넘게 들고, 게시물 캡션만 읽고 쓰면 내용을 잘못 해석하는 문제",
-            role: "리포트 자연어 생성 전 구간을 LLM 파이프라인으로 단독 설계·구현",
+            problem: "고객에게 보내는 주간·월간 리포트가 사무실 PC가 켜져 있어야만 나갔고, 리포트의 해설 문장을 AI가 쓰는 데 계정당 2분씩 걸려 계정이 늘수록 생성 시간이 그대로 늘어나던 상황",
+            role: "데이터 수집부터 AI 해설 작성, 자동 발송까지 리포트 생성 전 과정을 단독 설계·구현",
             contributions: [
-              "작업 난이도에 따라 모델을 나눠 배치 — 해석 작성은 중형, 이미지 판별은 소형 모델에 위임해 비용과 속도를 함께 확보",
-              "무인 실행 구간은 요청을 묶어 한 번에 처리하고 공통 지시문을 캐싱해 호출 단가 절감 (묶음 처리 50% 할인 적용)",
-              "수집한 데이터를 그대로 믿지 않도록 수집 전·후 검증 에이전트를 따로 두어, 문제가 있으면 해석을 쓰기 전에 걸러냄",
-              "캡션만 읽고 내용을 오독하는 문제를 발견해, 영상 프레임·커버 이미지를 실제로 분석하는 단계를 추가하고 그 결과를 해석 작성의 근거로 주입",
+              "글을 쓰는 작업은 성능 좋은 모델에, 이미지를 구분하는 작업은 작고 싼 모델에 맡겨 비용과 속도를 함께 확보",
+              "수집한 데이터에 문제가 있으면 해설을 쓰기 전에 걸러내는 검증 단계를 추가",
+              "AI가 게시물 캡션만 읽으면 내용을 잘못 이해하는 걸 발견하고, 영상·이미지까지 직접 보게 해 정확도를 높임",
+              "PC에서 수동으로 돌리던 생성 작업을 클라우드로 옮겨 정해진 시각에 자동 실행",
+              "유저가 원하는 기간을 골라 요청하면 순서대로 자동 처리 — 요금 차감·예외 상황까지 자동 반영",
             ],
             achievements: [
-              "계정당 2분씩 걸리던 해석 작성을 없애고, 30여 개 계정 리포트를 사람 개입 없이 생성",
-              "실행 환경(로컬·클라우드)에 따라 호출 경로를 자동으로 나눠 불필요한 과금 발생을 차단",
-            ],
-          },
-          {
-            name: "리포트 클라우드 자동화 · 온디맨드 기간 리포트",
-            period: "2026.06 ~ 2026.07",
-            problem: "고객에게 나가는 리포트를 담당자 노트북에서 수동으로 돌리고 있어, PC가 꺼지면 그날 리포트가 나오지 않는 상황",
-            role: "프로젝트 리더 겸 단독 개발자로 클라우드 이전과 신규 기능 전 구간을 설계·구현",
-            contributions: [
-              "리포트 생성을 클라우드(AWS)로 옮기고 정해진 시각에 자동 실행되게 만들어, 사람 손과 특정 PC에 대한 의존을 제거",
-              "유저가 원하는 기간을 골라 직접 요청하면 순서대로 처리되는 구조로 구현 (요청이 몰려도 대기열에서 안전하게 처리)",
-              "요금 차감, 데이터가 없는 계정의 요청 거절 등 과금·예외 규칙을 자동 처리에 반영",
-            ],
-            achievements: [
+              "30여 개 계정의 리포트를 사람 손 없이 생성 — 1시간 넘게 걸리던 해설 작성을 모델 분담으로 해소",
               "리포트 생성 성공률 96.3%, 요청 후 평균 80초 내 완성, 시스템 결함으로 인한 실패 0건",
-              "요청 80건·유저 63명을 사람 개입 없이 처리하고, 건당 원가가 요금을 넘지 않도록 유지",
+              "요청 80건·유저 63명을 자동 처리하면서, 건당 생성 원가가 받는 요금을 넘지 않게 유지",
             ],
           },
         ],
@@ -160,7 +147,10 @@ const projects = [
         name: "Biz Calendar",
         description: "마케팅 조직의 캠페인, 콘텐츠, 태스크, 일정을 한 워크스페이스에서 통합 관리 웹",
         serviceClosed: true,
-        tech: ["Next.js 15", "React 19", "TypeScript", "Zustand", "SWR", "TailwindCSS", "Shadcn UI", "AWS EKS", "Docker", "GitHub Actions"],
+        techGroups: [
+          { label: "FE", items: ["Next.js 15", "React 19", "TypeScript", "Zustand", "SWR", "TailwindCSS", "Shadcn UI"] },
+          { label: "Infra", items: ["AWS EKS", "Docker", "GitHub Actions"] },
+        ],
         subProjects: [
           {
             name: "BizCalendar 플랫폼",
@@ -168,9 +158,9 @@ const projects = [
             problem: "마케팅 팀이 개인 엑셀로 캠페인 일정을 관리해 팀 간 일정 충돌과 공유 누락이 반복되는 환경",
             role: "기획 단계부터 참여해 캘린더 뷰 체계 설계, 결제·인증 시스템 구현, GS 인증까지 프론트엔드 전반을 리드",
             contributions: [
-              "사용자 워크플로 분석 기반 7개 캘린더 뷰 체계 설계로, 팀 규모·업무 성격에 맞는 일정 관리 경험 제공",
-              "드래그 앤 드롭 기반 일정 이동·리사이즈·크로스 뷰 전환 등 캘린더 핵심 인터랙션 설계·구현",
-              "결제·인증·GS 인증 등 서비스 상용화에 필요한 전체 인프라 구축",
+              "팀 규모·업무 성격에 맞게 고를 수 있는 7가지 캘린더 화면을 설계",
+              "엑셀에서 하던 일정 수정을 마우스로 끌어 옮기고 늘리는 방식으로 전환",
+              "결제·인증·GS 인증 등 상용화에 필요한 기반 구축",
             ],
             achievements: [
               "BizCalendar MVP를 기반으로 TIPS 투자 유치 성공 (정부 기술창업 프로그램)",
@@ -304,8 +294,7 @@ const projects = [
             period: "2023.02 ~ 2023.09",
             role: "마케팅 제휴 및 이벤트 페이지 프론트엔드 개발을 담당",
             contributions: [
-              "제휴사(야놀자, 배달의민족 등) 프로모션 페이지 개발",
-              "자체 이벤트 페이지를 개발하고 앱 안에서 열리도록 연동",
+              "야놀자·배달의민족 등 제휴 프로모션과 자체 이벤트 페이지를 개발하고 앱과 연동",
             ],
           },
         ],
@@ -327,8 +316,7 @@ const projects = [
             problem: "앱 신규 버전 출시와 웹 서비스 안정 운영이 동시에 요구되는 상황",
             role: "프론트엔드 개발자로서 App v3.2 개발, 외부 SDK 연동, Web 유지보수 담당",
             contributions: [
-              "앱 v3.2 기능 개발 및 ebest SDK Native Android 연동",
-              "웹 서비스 유지보수 및 신규 기획 페이지 개발",
+              "앱 v3.2 기능 개발과 외부 SDK 네이티브 연동, 웹 유지보수 및 신규 페이지 개발",
             ],
           },
         ],
@@ -398,6 +386,37 @@ const projects = [
       },
     ],
   },
+  {
+    company: "사이드 프로젝트",
+    companyDescription: "본업 밖에서 기획부터 배포·운영까지 혼자 완주하는 개인 프로젝트",
+    items: [
+      {
+        name: "Sync Block",
+        url: "https://sync-block.app",
+        description: "Google Calendar 기반 통합 일정 관리 웹 (운영 중)",
+        techGroups: [
+          { label: "FE", items: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Shadcn UI", "Zustand", "SWR", "next-intl"] },
+          { label: "BE", items: ["NestJS 11", "Prisma 7", "PostgreSQL", "Google OAuth"] },
+          { label: "Infra", items: ["Railway", "Cloudflare"] },
+        ],
+        subProjects: [
+          {
+            name: "Sync Block 플랫폼",
+            period: "2025.03 ~ 현재",
+            role: "기획·디자인·프론트엔드·백엔드·인프라 전 영역을 단독 개발·운영",
+            contributions: [
+              "Google Calendar 연동 기반 월별·주별·간트차트 뷰 일정 관리 기능 구현",
+              "다국어(한국어/영어) 지원과 자체 디자인 시스템 구축",
+              "Cloudflare DNS + Railway 배포, 커스텀 도메인·SSL 직접 운영",
+            ],
+            achievements: [
+              "기획부터 프론트엔드·백엔드·DB 설계·인증·배포까지 전 과정을 단독 구축해 실서비스로 운영 중",
+            ],
+          },
+        ],
+      },
+    ],
+  },
 ];
 
 const skills = [
@@ -423,12 +442,18 @@ interface SubProject {
   achievements?: string[];
 }
 
+interface TechGroup {
+  label: string;
+  items: string[];
+}
+
 interface ProjectItem {
   name: string;
   url?: string;
   description: string;
   serviceClosed?: boolean;
-  tech: string[];
+  tech?: string[];
+  techGroups?: TechGroup[];
   subProjects: SubProject[];
 }
 
@@ -556,13 +581,30 @@ function ProjectCard({ project }: { project: ProjectItem }) {
         </div>
       </CardHeader>
       <CardContent className="pt-0">
-        <div className="mb-5 flex flex-wrap gap-2">
-          {project.tech.map((t) => (
-            <Badge key={t} variant="secondary" className="text-xs font-medium">
-              {t}
-            </Badge>
-          ))}
-        </div>
+        {project.techGroups ? (
+          <div className="mb-5 space-y-2">
+            {project.techGroups.map((group) => (
+              <div key={group.label} className="flex flex-wrap items-baseline gap-2">
+                <span className="w-10 shrink-0 text-xs font-semibold text-muted-foreground uppercase tracking-wide">
+                  {group.label}
+                </span>
+                {group.items.map((t) => (
+                  <Badge key={t} variant="secondary" className="text-xs font-medium">
+                    {t}
+                  </Badge>
+                ))}
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="mb-5 flex flex-wrap gap-2">
+            {project.tech?.map((t) => (
+              <Badge key={t} variant="secondary" className="text-xs font-medium">
+                {t}
+              </Badge>
+            ))}
+          </div>
+        )}
         <div className="space-y-5">
           {project.subProjects.map((subProject, i) => (
             <SubProjectCard key={i} subProject={subProject} />
@@ -585,14 +627,11 @@ function ResumeContent() {
         </h3>
         <div className="space-y-4 text-foreground/80 leading-relaxed sm:text-base">
           <p className="pl-1">
-            유저의 문제를 파악하고 프로덕트로 만들어가는 데 집중하는
-            엔지니어입니다. SaaS 플랫폼 기획부터 출시까지 리드한 경험이
-            있으며, 프론트엔드를 기반으로 백엔드·데이터 파이프라인·LLM
-            파이프라인까지 필요한 범위를 직접 맡아 제품을 완성합니다. Claude
-            Code 기반 AI 워크플로로
-            개발 사이클을 빠르게 반복하고, 트래킹 지표로 다음 개선을
-            결정합니다. 물류 현장의 생산성 개선부터 마케팅 자동화 플랫폼까지,
-            실사용자의 업무를 실질적으로 바꾸는 제품을 만들어왔습니다.
+            유저의 문제를 프로덕트로 만드는 데 집중하는 엔지니어입니다.
+            화면부터 백엔드·데이터 파이프라인·LLM 파이프라인, 인프라까지
+            제품에 필요한 범위를 직접 맡고, Claude Code 기반 AI 워크플로로
+            빠르게 반복하며 트래킹 지표로 다음 개선을 정합니다. 물류 현장의
+            생산성 개선부터 마케팅 자동화 플랫폼까지 만들어왔습니다.
           </p>
         </div>
       </section>
