@@ -393,10 +393,10 @@ const sideProjects: ProjectItem[] = [
   {
     name: "Sync Block",
     url: "https://sync-block.app",
-    description: "Google Calendar 기반 통합 일정 관리 웹 (운영 중)",
+    description: "Google·Outlook 캘린더를 한 화면에 통합하는 일정·할 일 관리 웹 (운영 중)",
     techGroups: [
       { label: "FE", items: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS 4", "Shadcn UI", "Zustand", "SWR", "next-intl"] },
-      { label: "BE", items: ["NestJS 11", "Prisma 7", "PostgreSQL", "Google OAuth"] },
+      { label: "BE", items: ["NestJS 11", "Prisma 7", "PostgreSQL", "OAuth (Google·Microsoft)"] },
       { label: "Infra", items: ["Railway", "Cloudflare"] },
     ],
     subProjects: [
@@ -405,9 +405,9 @@ const sideProjects: ProjectItem[] = [
         period: "2025.03 ~ 현재",
         role: "기획·디자인·프론트엔드·백엔드·인프라 전 영역을 단독 개발·운영",
         contributions: [
-          "Google Calendar 연동 기반 월별·주별·간트차트 뷰 일정 관리 기능 구현",
-          "다국어(한국어/영어) 지원과 자체 디자인 시스템 구축",
-          "Cloudflare DNS + Railway 배포, 커스텀 도메인·SSL 직접 운영",
+          "Google·Outlook·로컬 캘린더를 한 화면에 통합 — 양방향 동기화와 겹치는 일정 자동 감지 구현",
+          "일정에서 바로 할 일을 만들어 잇는 태스크 관리와 월간·주간·일간·타임라인 뷰 구현",
+          "다국어(한/영)·자체 디자인 시스템 구축, Railway·Cloudflare 기반 도메인·SSL 직접 운영",
         ],
         achievements: [
           "기획부터 프론트엔드·백엔드·DB 설계·인증·배포까지 전 과정을 단독 구축해 실서비스로 운영 중",
