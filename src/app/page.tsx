@@ -758,11 +758,24 @@ function ResumeContent() {
             <GraduationCap className="h-5 w-5 text-primary" /> Education
           </h3>
           <Card className="transition-all hover:shadow-md hover:shadow-primary/5">
-            <CardContent className="py-5">
+            <CardContent className="space-y-3 py-5">
               <p className="font-semibold text-base">서일대학교</p>
-              <p className="mt-1 text-sm text-muted-foreground">
-                컴퓨터공학 학사 졸업
-              </p>
+              <div className="flex items-center justify-between gap-2">
+                <p className="text-sm text-muted-foreground">
+                  컴퓨터소프트웨어 학사 (전공심화) 졸업
+                </p>
+                <Badge variant="outline" className="shrink-0 text-xs font-medium">
+                  2020.03 - 2021.02
+                </Badge>
+              </div>
+              <div className="flex items-center justify-between gap-2">
+                <p className="text-sm text-muted-foreground">
+                  컴퓨터전자시스템공학 전문학사 졸업
+                </p>
+                <Badge variant="outline" className="shrink-0 text-xs font-medium">
+                  2015.03 - 2018.02
+                </Badge>
+              </div>
             </CardContent>
           </Card>
         </div>
