@@ -82,7 +82,7 @@ const projects = [
             name: "자동 DM",
             period: "2026.02 ~ 2026.03",
             problem: "인플루언서·브랜드가 게시물 댓글에 일일이 반응해 DM을 보내야 해서, 캠페인 규모가 커질수록 응대가 물리적으로 불가능해지는 상황",
-            role: "에픽 리더로 기획·디자인 리뷰·프론트엔드 개발·QA·배포를 담당",
+            role: "기능 리드로 기획·디자인 리뷰·프론트엔드 개발·QA·배포를 담당",
             contributions: [
               "게시물 선택 → 발송 조건 → 메시지 구성의 3단계 생성 플로우 설계",
               "키워드 댓글에 자동 DM, 팔로우 인증 후 링크 전달까지 구현",
@@ -94,34 +94,19 @@ const projects = [
             ],
           },
           {
-            name: "Conma Admin — 자체 프로덕트 애널리틱스",
-            period: "2026.03 ~ 2026.04",
-            problem: "시중 분석 도구로는 우리 서비스에만 있는 지표(요금 소모량, 리포트 신청 단계별 이탈)를 볼 수 없고, 숫자에서 '이 유저가 누구인지'까지 파고들려면 자사 DB와 연결이 필요한 상황",
-            role: "사내 분석 도구를 프론트엔드·백엔드 모두 혼자 설계·구현 (NestJS + Next.js)",
-            contributions: [
-              "유저 행동 기록을 모아 조회할 수 있는 분석 경로를 구성",
-              "신규 유입·재방문·기능별 사용량을 우리 기준으로 정의해 대시보드로 구현",
-              "요약 숫자에서 개별 유저까지 파고들 수 있게 DB와 연결",
-            ],
-            achievements: [
-              "시중 분석 도구를 사지 않고 직접 만들어, 서버를 새로 늘리지 않고 월 $10 미만으로 운영",
-              "이후 인사이트 v2·리포트 프로젝트의 KPI 측정 기반으로 활용",
-            ],
-          },
-          {
-            name: "인사이트 v2",
-            period: "2026.04 ~ 2026.06",
-            problem: "인스타그램 성과 데이터가 여러 수집 경로로 흩어져 지표 신뢰성이 떨어지고, 유저가 자기 계정의 성과를 해석할 수 있는 분석 화면이 부재한 상황",
-            role: "프로젝트 리더로 기획·지표 설계를 주도하고, 프론트엔드·백엔드 구현에 참여",
+            name: "인사이트 v2 — 지표 재정의와 자체 애널리틱스",
+            period: "2026.03 ~ 2026.06",
+            problem: "성과 데이터가 여러 수집 경로로 흩어져 같은 지표가 화면마다 다르게 보이고, 시중 분석 도구로는 우리 서비스에만 있는 지표(요금 소모량, 단계별 이탈)를 볼 수 없던 상황",
+            role: "프로젝트 리더로 기획·지표 설계를 주도하고 프론트엔드·백엔드 구현에 참여. 사내 분석 도구는 단독 설계·구현 (NestJS + Next.js)",
             contributions: [
               "흩어져 있던 데이터 수집 경로를 인스타그램 공식 API 하나로 통합",
               "유저가 자기 계정 성과를 스스로 해석할 수 있는 분석 화면으로 재설계",
-              "탭 전환·기간 변경 등 유저가 화면을 실제로 조작했는지 재는 측정 코드를 심음",
+              "유저 행동 기록 기반 사내 애널리틱스를 직접 구축, 탭 전환·기간 변경 등 실사용 측정까지 연결",
             ],
             achievements: [
-              "정식 오픈 후 실제로 화면을 조작한 유저 109명 확보 (방문자의 57%), 주간 활성 42~45명",
-              "수집 경로를 하나로 합쳐 데이터 불일치 0건 달성",
-              "'몇 명이 봤나'는 홈 화면이라 부풀려진 숫자였음을 확인하고, '실제로 조작했나·다시 왔나'로 지표를 다시 정의",
+              "'몇 명이 봤나'는 부풀려진 숫자임을 확인하고, '실제로 조작했나·다시 왔나'로 활성 지표를 재정의",
+              "방문자의 57%가 실제로 화면을 조작하는 분석 기능으로 정착, 수집 경로 통합으로 데이터 불일치 0건",
+              "분석 도구를 구매하지 않고 월 $10 미만으로 운영하며 이후 리포트 프로젝트의 KPI 측정 기반으로 활용",
             ],
           },
           {
@@ -274,27 +259,11 @@ const projects = [
             ],
           },
           {
-            name: "세특패스 도입",
-            period: "2023.05 ~ 2023.06",
-            problem: "기존 자체 구독 서비스가 제공하는 혜택에 비해 운영 비용이 과도하게 들던 상황",
-            role: "프론트엔드 개발자로 구독 가입·설정·해지 화면 개발을 담당",
-            contributions: ["새 구독 상품에 맞춰 가입·설정·해지 화면을 개발하고, 복잡하던 기존 흐름을 단순화"],
-            achievements: [
-              "새 구독 화면 도입 후 약 1개월 만에 구독 전환율 30% 수준 달성",
-            ],
-          },
-        ],
-      },
-      {
-        name: "마케팅 페이지",
-        description: "앱 안에서 열리는 제휴·이벤트 페이지",
-        tech: ["Next.js 12", "React", "JavaScript", "Styled Components"],
-        subProjects: [
-          {
-            name: "제휴·이벤트 페이지 개발",
+            name: "구독 상품 전환 · 제휴 이벤트 페이지",
             period: "2023.02 ~ 2023.09",
-            role: "마케팅 제휴 및 이벤트 페이지 프론트엔드 개발을 담당",
+            role: "프론트엔드 개발자로 구독 화면 개편과 마케팅 페이지 개발을 담당",
             contributions: [
+              "새 구독 상품(세특패스)에 맞춰 가입·설정·해지 화면을 개발하고 복잡하던 기존 흐름을 단순화",
               "야놀자·배달의민족 등 제휴 프로모션과 자체 이벤트 페이지를 개발하고 앱과 연동",
             ],
           },
@@ -302,89 +271,36 @@ const projects = [
       },
     ],
   },
+];
+
+const earlyCareer = [
   {
     company: "코레토",
-    companyDescription: "클라이언트의 비즈니스 성격에 맞게 반응형 웹, 모바일 앱(iOS, Android)을 제작",
-    items: [
-      {
-        name: "탱고픽 App · Web",
-        description: "가상자산 투자 포트폴리오 및 투자전략 공유 플랫폼 (외주)",
-        tech: ["React Native", "React", "TypeScript", "Jotai"],
-        subProjects: [
-          {
-            name: "탱고픽 App v3.2 개발 및 Web 유지보수",
-            period: "2022.04 ~ 2022.10",
-            problem: "앱 신규 버전 출시와 웹 서비스 안정 운영이 동시에 요구되는 상황",
-            role: "프론트엔드 개발자로서 App v3.2 개발, 외부 SDK 연동, Web 유지보수 담당",
-            contributions: [
-              "앱 v3.2 기능 개발과 외부 SDK 네이티브 연동, 웹 유지보수 및 신규 페이지 개발",
-            ],
-          },
-        ],
-      },
-      {
-        name: "뭄무 · 포스트팩토리 2.0",
-        url: "https://www.mummu.kr/",
-        description: "외부 클라이언트 대상 Mono Repo 기반 멀티 사이트 개발 (관리자/고객사/홈/쇼핑몰)",
-        tech: ["Next.js 12", "TypeScript", "Mobx", "Styled Components", "Lerna", "Storybook"],
-        subProjects: [
-          {
-            name: "Mono Repo 기반 멀티 사이트 개발",
-            period: "2021.07 ~ 2022.03",
-            problem: "외부 클라이언트 요청에 따라 복수의 사이트를 동시에 개발·운영해야 하는 환경",
-            role: "프론트엔드 개발자(팀원)로 2개 프로젝트에 걸쳐 멀티 사이트 개발 참여",
-            contributions: [
-              "Lerna 기반 Mono Repo 구조로 관리자/고객사/홈/쇼핑몰 등 멀티 사이트 개발",
-              "Atomic Design + Storybook 기반 공통 컴포넌트 설계 및 관리",
-            ],
-          },
-        ],
-      },
+    period: "2021.06 - 2022.10",
+    role: "Frontend Developer",
+    tech: "React Native · React · TypeScript · Next.js · Mobx · Lerna · Storybook",
+    points: [
+      "가상자산 투자 플랫폼 '탱고픽' 앱 v3.2 개발과 외부 SDK 네이티브 연동, 웹 유지보수",
+      "Lerna 기반 Mono Repo로 관리자·고객사·홈·쇼핑몰 멀티 사이트 개발, Atomic Design + Storybook 공통 컴포넌트 체계 구축",
     ],
   },
   {
     company: "뉴젠솔루션",
-    companyDescription: "개인 세무회계사에서 가장 많이 사용하는 ERP솔루션 업체",
-    items: [
-      {
-        name: "ERP 솔루션 개발",
-        description: "GS 인증 대응 웹 페이지 개발 및 ERP 리포트 연동",
-        tech: ["React", "JavaScript", "C++", "MFC"],
-        subProjects: [
-          {
-            name: "GS 인증 대응 및 ERP 리포트 연동",
-            period: "2020.04 ~ 2020.12",
-            role: "프론트엔드·C++ 개발자로서 GS 인증 페이지 개발 및 ERP 인쇄 기능 연동 담당",
-            contributions: [
-              "GS 인증 요구사항에 맞춘 테스트 웹 페이지 개발 및 인증 기관 제공",
-              "ERP 시스템의 외부 인쇄 솔루션 의존을 자사 솔루션으로 전환",
-            ],
-            achievements: ["GS 1등급 인증 획득"],
-          },
-        ],
-      },
+    period: "2020.03 - 2021.03",
+    role: "C++ · Frontend Developer",
+    tech: "React · JavaScript · C++ · MFC",
+    points: [
+      "세무회계 ERP의 GS 인증 대응 웹 개발과 외부 인쇄 솔루션의 자사 전환 — GS 1등급 인증 획득",
     ],
   },
   {
     company: "오픈오브젝트",
-    companyDescription: "대기업과 협업을 통해서 프로젝트를 진행하는 개발 에이전시",
-    items: [
-      {
-        name: "SKB 셋톱박스 · 해군 시스템",
-        description: "SK BroadBand 셋톱박스 서비스 화면 개발 및 해군 군수현황 관리 시스템 개발",
-        tech: ["C++", "Lua", "JavaScript", "jQuery"],
-        subProjects: [
-          {
-            name: "셋톱박스 v5.0 및 군수현황관리 시스템 개발",
-            period: "2017.11 ~ 2019.11",
-            role: "STB 개발자 및 프론트엔드 개발자로 대기업 협업 프로젝트 참여",
-            contributions: [
-              "SK BroadBand 셋톱박스 v5.0 설정·광고·키즈 VOD 화면 개발 (약 100만 사용자 대상)",
-              "해군 군수현황 관리 시스템의 조회·등록·통계 화면 개발",
-            ],
-          },
-        ],
-      },
+    period: "2017.11 - 2019.11",
+    role: "C · C++ Developer",
+    tech: "C++ · Lua · JavaScript · jQuery",
+    points: [
+      "SK브로드밴드 셋톱박스 v5.0 설정·광고·키즈 VOD 화면 개발 (약 100만 사용자 대상)",
+      "해군 군수현황 관리 시스템의 조회·등록·통계 화면 개발",
     ],
   },
 ];
@@ -700,6 +616,44 @@ function ResumeContent() {
               </div>
             </div>
           ))}
+
+          {/* Early career — 요약 */}
+          <div>
+            <div className="mb-6">
+              <h4 className="text-lg font-semibold text-primary flex items-center gap-2 sm:text-xl">
+                이전 경력
+                <span className="text-lg">💼</span>
+              </h4>
+              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+                프론트엔드로 자리 잡기까지 — C·C++ 기반 시스템 개발에서 시작해 웹·앱으로 넘어온 기간
+              </p>
+            </div>
+            <div className="space-y-3">
+              {earlyCareer.map((c) => (
+                <Card key={c.company} className="transition-all hover:shadow-md hover:shadow-primary/5">
+                  <CardContent className="py-5">
+                    <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between">
+                      <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                        <p className="font-semibold text-base">{c.company}</p>
+                        <p className="text-sm text-muted-foreground">{c.role}</p>
+                      </div>
+                      <Badge variant="outline" className="w-fit shrink-0 text-xs font-medium">
+                        {c.period}
+                      </Badge>
+                    </div>
+                    <div className="mt-3 space-y-1">
+                      {c.points.map((p, i) => (
+                        <p key={i} className="text-sm text-foreground/80 leading-relaxed">
+                          {p}
+                        </p>
+                      ))}
+                    </div>
+                    <p className="mt-3 font-mono text-xs text-muted-foreground">{c.tech}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
